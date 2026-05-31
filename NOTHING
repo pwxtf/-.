@@ -3,6 +3,7 @@
 
 -- Instances:
 
+local SynthUI = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleBar = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
@@ -143,17 +144,19 @@ local UIAspectRatioConstraint_49 = Instance.new("UIAspectRatioConstraint")
 
 --Properties:
 
-MainFrame.Name = "MainFrame"
-local SynthUI = Instance.new("ScreenGui")
 SynthUI.Name = "SynthUI"
-SynthUI.Parent = game.Players.LocalPlayer.PlayerGui
+SynthUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+SynthUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+SynthUI.ResetOnSpawn = false
+
+MainFrame.Name = "MainFrame"
 MainFrame.Parent = SynthUI
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 MainFrame.BackgroundTransparency = 0.450
 MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
-MainFrame.Position = UDim2.new(0, 395, 0, 245)
+MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 MainFrame.Size = UDim2.new(0, 580, 0, 340)
 
 TitleBar.Name = "TitleBar"
@@ -1089,3 +1092,396 @@ UICorner_13.Parent = MainFrame
 
 UIAspectRatioConstraint_49.Parent = MainFrame
 UIAspectRatioConstraint_49.AspectRatio = 1.706
+
+-- Scripts:
+
+local function YLQFRJ_fake_script() -- SynthUI.UIScript 
+	local script = Instance.new('LocalScript', SynthUI)
+
+	local MainFrame = script.Parent.MainFrame
+	local ContentFrame = MainFrame.ContentFrame
+	local TabRow = MainFrame.TabRow
+	
+	-- TOGGLE FUNCTION
+	local function SetupToggle(toggle)
+		local box = toggle.Box
+		local isChecked = false
+		box.MouseButton1Click:Connect(function()
+			isChecked = not isChecked
+			if isChecked then
+				box.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			else
+				box.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			end
+		end)
+	end
+	
+	-- SLIDER FUNCTION
+	local function SetupSlider(slider, minVal, maxVal, defaultVal)
+		local track = slider.Track
+		local fill = track.Fill
+		local value = slider.Value
+		local dragging = false
+	
+		local function updateSlider(input)
+			local trackPos = track.AbsolutePosition.X
+			local trackSize = track.AbsoluteSize.X
+			local relative = math.clamp((input.Position.X - trackPos) / trackSize, 0, 1)
+			local val = math.floor(minVal + (maxVal - minVal) * relative)
+			fill.Size = UDim2.new(relative, 0, 1, 0)
+			value.Text = val .. "/" .. maxVal
+		end
+	
+		local defaultRelative = (defaultVal - minVal) / (maxVal - minVal)
+		fill.Size = UDim2.new(defaultRelative, 0, 1, 0)
+		value.Text = defaultVal .. "/" .. maxVal
+	
+		track.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or
+				input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				updateSlider(input)
+			end
+		end)
+	
+		track.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or
+				input.UserInputType == Enum.UserInputType.Touch then
+				dragging = false
+			end
+		end)
+	
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if dragging then
+				if input.UserInputType == Enum.UserInputType.MouseMovement or
+					input.UserInputType == Enum.UserInputType.Touch then
+					updateSlider(input)
+				end
+			end
+		end)
+	end
+	
+	-- KUMPULIN SEMUA TEXT
+	local function getAllTexts()
+		local texts = {}
+		for _, v in pairs(MainFrame:GetDescendants()) do
+			if v:IsA("TextLabel") or v:IsA("TextButton") or v:IsA("TextBox") then
+				table.insert(texts, v)
+			end
+		end
+		return texts
+	end
+	
+	-- KUMPULIN SEMUA DIVIDER
+	local function getAllDividers()
+		local dividers = {}
+		for _, v in pairs(MainFrame:GetDescendants()) do
+			if v:IsA("Frame") and v.Name == "Divider" then
+				table.insert(dividers, v)
+			end
+		end
+		return dividers
+	end
+	
+	-- KUMPULIN SEMUA BORDER IMAGELABEL
+	local function getAllBorderImages()
+		local borders = {}
+		for _, v in pairs(MainFrame:GetDescendants()) do
+			if v:IsA("ImageLabel") and v.Name == "Border" then
+				table.insert(borders, v)
+			end
+		end
+		return borders
+	end
+	
+	-- SIMPAN WARNA ASLI
+	local savedTextColors = {}
+	local savedDividerColors = {}
+	local savedBorderColors = {}
+	
+	local function saveDefaultColors()
+		savedTextColors = {}
+		savedDividerColors = {}
+		savedBorderColors = {}
+	
+		for _, v in pairs(getAllTexts()) do
+			savedTextColors[v] = v.TextColor3
+		end
+		for _, v in pairs(getAllDividers()) do
+			savedDividerColors[v] = v.BackgroundColor3
+		end
+		for _, v in pairs(getAllBorderImages()) do
+			savedBorderColors[v] = v.ImageColor3
+		end
+	end
+	
+	-- RAINBOW
+	local RunService = game:GetService("RunService")
+	local rainbowConnection = nil
+	local rainbowHue = 0.66
+	local SwitchBG_ref = nil
+	
+	local function startRainbow()
+		saveDefaultColors()
+		rainbowConnection = RunService.Heartbeat:Connect(function(dt)
+			rainbowHue = (rainbowHue + dt * 0.05) % 1
+			local color = Color3.fromHSV(rainbowHue, 0.6, 1)
+			for _, v in pairs(getAllTexts()) do
+				v.TextColor3 = color
+			end
+			for _, v in pairs(getAllDividers()) do
+				v.BackgroundColor3 = color
+			end
+			for _, v in pairs(getAllBorderImages()) do
+				v.ImageColor3 = color
+			end
+			if SwitchBG_ref then
+				SwitchBG_ref.BackgroundColor3 = color
+			end
+		end)
+	end
+	
+	local function stopRainbow()
+		if rainbowConnection then
+			rainbowConnection:Disconnect()
+			rainbowConnection = nil
+		end
+		for v, color in pairs(savedTextColors) do
+			if v and v.Parent then
+				v.TextColor3 = color
+			end
+		end
+		for v, color in pairs(savedDividerColors) do
+			if v and v.Parent then
+				v.BackgroundColor3 = color
+			end
+		end
+		for v, color in pairs(savedBorderColors) do
+			if v and v.Parent then
+				v.ImageColor3 = color
+			end
+		end
+		if SwitchBG_ref then
+			SwitchBG_ref.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+		end
+	end
+	
+	-- TAB SWITCHING
+	local function switchTab(page)
+		for _, p in pairs(ContentFrame:GetChildren()) do
+			if p:IsA("Frame") then
+				p.Visible = false
+			end
+		end
+		page.Visible = true
+	end
+	
+	TabRow.Tab1.MouseButton1Click:Connect(function()
+		switchTab(ContentFrame.Page_AutoParry)
+	end)
+	
+	TabRow.Tab2.MouseButton1Click:Connect(function()
+		switchTab(ContentFrame.Page_SilentAim)
+	end)
+	
+	TabRow.Tab3.MouseButton1Click:Connect(function()
+		switchTab(ContentFrame.Page_Aimlock)
+	end)
+	
+	TabRow.Tab4.MouseButton1Click:Connect(function()
+		switchTab(ContentFrame.Page_Misc)
+	end)
+	
+	TabRow.Tab5.MouseButton1Click:Connect(function()
+		switchTab(ContentFrame.Page_Config)
+	end)
+	
+	TabRow.Tab6.MouseButton1Click:Connect(function()
+		switchTab(ContentFrame.Page_Setting)
+	end)
+	
+	-- RAINBOW TOGGLE
+	local LeftPanel_Setting = ContentFrame.Page_Setting.ScrollArea.LeftPanel
+	local SwitchBG = LeftPanel_Setting.Toggle_Rainbow.SwitchBG
+	local Knob = SwitchBG.Knob
+	local rainbowOn = false
+	
+	SwitchBG_ref = SwitchBG
+	
+	local TweenService = game:GetService("TweenService")
+	
+	local function setSwitch(on)
+		rainbowOn = on
+		if on then
+			startRainbow()
+			TweenService:Create(Knob, TweenInfo.new(0.2), {
+				Position = UDim2.new(1, -14, 0.5, 0)
+			}):Play()
+		else
+			TweenService:Create(Knob, TweenInfo.new(0.2), {
+				Position = UDim2.new(0, 2, 0.5, 0)
+			}):Play()
+			stopRainbow()
+		end
+	end
+	
+	SwitchBG.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or
+			input.UserInputType == Enum.UserInputType.Touch then
+			setSwitch(not rainbowOn)
+		end
+	end)
+	
+	-- CONFIG SYSTEM
+	local configList = {}
+	local autoloadConfig = nil
+	local selectedConfig = nil
+	
+	local LeftPanel_Config = ContentFrame.Page_Config.ScrollArea.LeftPanel
+	local InputConfigName = LeftPanel_Config.InputConfigName
+	local ConfigListFrame = LeftPanel_Config.ConfigListFrame
+	local Btn_SelectConfig = LeftPanel_Config.Btn_SelectConfig
+	
+	InputConfigName:GetPropertyChangedSignal("Text"):Connect(function()
+		if #InputConfigName.Text > 15 then
+			InputConfigName.Text = string.sub(InputConfigName.Text, 1, 15)
+		end
+	end)
+	
+	local function updateSelectBtn()
+		if selectedConfig then
+			Btn_SelectConfig.Text = selectedConfig
+			Btn_SelectConfig.TextColor3 = Color3.fromRGB(0, 0, 0)
+		else
+			Btn_SelectConfig.Text = ". . ."
+			Btn_SelectConfig.TextColor3 = Color3.fromRGB(100, 100, 100)
+		end
+	end
+	
+	local function getToggles()
+		local data = {}
+		for _, v in pairs(MainFrame:GetDescendants()) do
+			if v.Name == "Box" and v:IsA("TextButton") then
+				local isOn = v.BackgroundColor3 == Color3.fromRGB(255, 255, 255)
+				data[v.Parent.Name] = isOn
+			end
+		end
+		return data
+	end
+	
+	local function applyToggles(data)
+		for _, v in pairs(MainFrame:GetDescendants()) do
+			if v.Name == "Box" and v:IsA("TextButton") then
+				local path = v.Parent.Name
+				if data[path] ~= nil then
+					if data[path] then
+						v.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					else
+						v.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+					end
+				end
+			end
+		end
+	end
+	
+	local function refreshConfigList()
+		for _, v in pairs(ConfigListFrame:GetChildren()) do
+			if v:IsA("TextButton") then
+				v:Destroy()
+			end
+		end
+	
+		local index = 0
+		for name, _ in pairs(configList) do
+			local btn = Instance.new("TextButton")
+			btn.Parent = ConfigListFrame
+			btn.ZIndex = 99
+			btn.Size = UDim2.new(1, 0, 0, 18)
+			btn.Position = UDim2.new(0, 0, 0, index * 22)
+			btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			btn.BackgroundTransparency = 0.1
+			btn.BorderSizePixel = 0
+			btn.Text = name
+			btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+			btn.Font = Enum.Font.Creepster
+			btn.TextSize = 11
+			btn.TextTruncate = Enum.TextTruncate.AtEnd
+	
+			local corner = Instance.new("UICorner")
+			corner.CornerRadius = UDim.new(0, 4)
+			corner.Parent = btn
+	
+			btn.MouseButton1Click:Connect(function()
+				selectedConfig = name
+				updateSelectBtn()
+				ConfigListFrame.Visible = false
+			end)
+	
+			index += 1
+		end
+	
+		ConfigListFrame.Position = UDim2.new(0, 0, 0, 107)
+		ConfigListFrame.Size = UDim2.new(1, 0, 0, math.min(index * 22, 132))
+		ConfigListFrame.CanvasSize = UDim2.new(0, 0, 0, index * 22)
+	end
+	
+	-- CREATE CONFIG
+	LeftPanel_Config.Btn_CreateConfig.MouseButton1Click:Connect(function()
+		local name = InputConfigName.Text
+		if name == "" or name == nil then return end
+		configList[name] = getToggles()
+		selectedConfig = name
+		updateSelectBtn()
+		InputConfigName.Text = ""
+		refreshConfigList()
+	end)
+	
+	-- SELECT CONFIG
+	Btn_SelectConfig.MouseButton1Click:Connect(function()
+		refreshConfigList()
+		ConfigListFrame.Visible = not ConfigListFrame.Visible
+	end)
+	
+	-- LOAD CONFIG
+	LeftPanel_Config.Btn_LoadConfig.MouseButton1Click:Connect(function()
+		if not selectedConfig or not configList[selectedConfig] then return end
+		applyToggles(configList[selectedConfig])
+	end)
+	
+	-- OVERWRITE CONFIG
+	LeftPanel_Config.Btn_OverwriteConfig.MouseButton1Click:Connect(function()
+		if not selectedConfig then return end
+		configList[selectedConfig] = getToggles()
+	end)
+	
+	-- DELETE CONFIG
+	LeftPanel_Config.Btn_DeleteConfig.MouseButton1Click:Connect(function()
+		if not selectedConfig then return end
+		configList[selectedConfig] = nil
+		selectedConfig = nil
+		updateSelectBtn()
+		refreshConfigList()
+	end)
+	
+	-- REFRESH LIST
+	LeftPanel_Config.Btn_RefreshList.MouseButton1Click:Connect(function()
+		refreshConfigList()
+	end)
+	
+	-- SET AS AUTOLOAD
+	LeftPanel_Config.Btn_SetAutoload.MouseButton1Click:Connect(function()
+		if not selectedConfig then return end
+		autoloadConfig = selectedConfig
+	end)
+	
+	-- RESET AUTOLOAD
+	LeftPanel_Config.Btn_ResetAutoload.MouseButton1Click:Connect(function()
+		autoloadConfig = nil
+	end)
+	
+	-- AUTOLOAD ON START
+	if autoloadConfig and configList[autoloadConfig] then
+		applyToggles(configList[autoloadConfig])
+	end
+end
+coroutine.wrap(YLQFRJ_fake_script)()
