@@ -1,0 +1,486 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local MainFrame = Instance.new("Frame")
+local TitleBar = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local Divider = Instance.new("Frame")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
+local TabRow = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Tab1 = Instance.new("TextButton")
+local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+local Tab2 = Instance.new("TextButton")
+local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
+local Tab3 = Instance.new("TextButton")
+local UITextSizeConstraint_4 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
+local Tab4 = Instance.new("TextButton")
+local UITextSizeConstraint_5 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local Tab5 = Instance.new("TextButton")
+local UITextSizeConstraint_6 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
+local Tab6 = Instance.new("TextButton")
+local UITextSizeConstraint_7 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_9 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_10 = Instance.new("UIAspectRatioConstraint")
+local ContentFrame = Instance.new("Frame")
+local Page_AutoParry = Instance.new("Frame")
+local ScrollArea = Instance.new("ScrollingFrame")
+local RightPanel = Instance.new("Frame")
+local UIAspectRatioConstraint_11 = Instance.new("UIAspectRatioConstraint")
+local LeftPanel = Instance.new("Frame")
+local UIAspectRatioConstraint_12 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_13 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_14 = Instance.new("UIAspectRatioConstraint")
+local Page_SilentAim = Instance.new("Frame")
+local ScrollArea_2 = Instance.new("ScrollingFrame")
+local RightPanel_2 = Instance.new("Frame")
+local LeftPanel_2 = Instance.new("Frame")
+local UIAspectRatioConstraint_15 = Instance.new("UIAspectRatioConstraint")
+local Page_Aimlock = Instance.new("Frame")
+local ScrollArea_3 = Instance.new("ScrollingFrame")
+local RightPanel_3 = Instance.new("Frame")
+local UIAspectRatioConstraint_16 = Instance.new("UIAspectRatioConstraint")
+local LeftPanel_3 = Instance.new("Frame")
+local UIAspectRatioConstraint_17 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_18 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_19 = Instance.new("UIAspectRatioConstraint")
+local Page_Misc = Instance.new("Frame")
+local ScrollArea_4 = Instance.new("ScrollingFrame")
+local LeftPanel_4 = Instance.new("Frame")
+local UIAspectRatioConstraint_20 = Instance.new("UIAspectRatioConstraint")
+local RightPanel_4 = Instance.new("Frame")
+local UIAspectRatioConstraint_21 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_22 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_23 = Instance.new("UIAspectRatioConstraint")
+local Page_Config = Instance.new("Frame")
+local ScrollArea_5 = Instance.new("ScrollingFrame")
+local RightPanel_5 = Instance.new("Frame")
+local UIAspectRatioConstraint_24 = Instance.new("UIAspectRatioConstraint")
+local LeftPanel_5 = Instance.new("Frame")
+local LabelConfigSystem = Instance.new("TextLabel")
+local UITextSizeConstraint_8 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_25 = Instance.new("UIAspectRatioConstraint")
+local InputConfigName = Instance.new("TextBox")
+local UICorner = Instance.new("UICorner")
+local UITextSizeConstraint_9 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_26 = Instance.new("UIAspectRatioConstraint")
+local Btn_CreateConfig = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local UITextSizeConstraint_10 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_27 = Instance.new("UIAspectRatioConstraint")
+local Divider_2 = Instance.new("Frame")
+local UIAspectRatioConstraint_28 = Instance.new("UIAspectRatioConstraint")
+local LabelConfigList = Instance.new("TextLabel")
+local UITextSizeConstraint_11 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_29 = Instance.new("UIAspectRatioConstraint")
+local Btn_SelectConfig = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local UITextSizeConstraint_12 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_30 = Instance.new("UIAspectRatioConstraint")
+local Btn_LoadConfig = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local UITextSizeConstraint_13 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_31 = Instance.new("UIAspectRatioConstraint")
+local Btn_OverwriteConfig = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local UITextSizeConstraint_14 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_32 = Instance.new("UIAspectRatioConstraint")
+local Btn_DeleteConfig = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local UITextSizeConstraint_15 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_33 = Instance.new("UIAspectRatioConstraint")
+local Btn_RefreshList = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local UITextSizeConstraint_16 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_34 = Instance.new("UIAspectRatioConstraint")
+local Btn_SetAutoload = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local UITextSizeConstraint_17 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_35 = Instance.new("UIAspectRatioConstraint")
+local Btn_ResetAutoload = Instance.new("TextButton")
+local UICorner_9 = Instance.new("UICorner")
+local UITextSizeConstraint_18 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_36 = Instance.new("UIAspectRatioConstraint")
+local ConfigListFrame = Instance.new("ScrollingFrame")
+local UICorner_10 = Instance.new("UICorner")
+local UIAspectRatioConstraint_37 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_38 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_39 = Instance.new("UIAspectRatioConstraint")
+local Page_Setting = Instance.new("Frame")
+local ScrollArea_6 = Instance.new("ScrollingFrame")
+local LeftPanel_6 = Instance.new("Frame")
+local Toggle_Rainbow = Instance.new("Frame")
+local Label = Instance.new("TextLabel")
+local UITextSizeConstraint_19 = Instance.new("UITextSizeConstraint")
+local UIAspectRatioConstraint_40 = Instance.new("UIAspectRatioConstraint")
+local SwitchBG = Instance.new("Frame")
+local UICorner_11 = Instance.new("UICorner")
+local Knob = Instance.new("Frame")
+local UICorner_12 = Instance.new("UICorner")
+local UIAspectRatioConstraint_41 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_42 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_43 = Instance.new("UIAspectRatioConstraint")
+local RightPanel_6 = Instance.new("Frame")
+local UIAspectRatioConstraint_44 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_45 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_46 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_47 = Instance.new("UIAspectRatioConstraint")
+local Divider_3 = Instance.new("Frame")
+local UIAspectRatioConstraint_48 = Instance.new("UIAspectRatioConstraint")
+local Border = Instance.new("ImageLabel")
+local UICorner_13 = Instance.new("UICorner")
+local UIAspectRatioConstraint_49 = Instance.new("UIAspectRatioConstraint")
+
+--Properties:
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = game.StarterGui.SynthUI
+MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainFrame.BackgroundTransparency = 0.450
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0, 395, 0, 245)
+MainFrame.Size = UDim2.new(0, 580, 0, 340)
+
+TitleBar.Name = "TitleBar"
+TitleBar.Parent = MainFrame
+TitleBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TitleBar.BackgroundTransparency = 1.000
+TitleBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TitleBar.BorderSizePixel = 0
+TitleBar.Size = UDim2.new(0, 580, 0, 29)
+
+Title.Name = "Title"
+Title.Parent = TitleBar
+Title.AnchorPoint = Vector2.new(0.5, 0.5)
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0, 290, 0, 14)
+Title.Size = UDim2.new(0, 580, 0, 29)
+Title.Font = Enum.Font.Creepster
+Title.Text = "<SYNTH/>"
+Title.TextColor3 = Color3.fromRGB(0, 0, 0)
+Title.TextScaled = true
+Title.TextSize = 16.000
+Title.TextWrapped = true
+
+UITextSizeConstraint.Parent = Title
+UITextSizeConstraint.MaxTextSize = 16
+
+UIAspectRatioConstraint.Parent = Title
+UIAspectRatioConstraint.AspectRatio = 19.333
+UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Divider.Name = "Divider"
+Divider.Parent = TitleBar
+Divider.AnchorPoint = Vector2.new(0, 1)
+Divider.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Divider.BorderSizePixel = 0
+Divider.Position = UDim2.new(0, 0, 0, 29)
+Divider.Size = UDim2.new(0, 580, 0, 1)
+
+UIAspectRatioConstraint_2.Parent = Divider
+UIAspectRatioConstraint_2.AspectRatio = 580.000
+UIAspectRatioConstraint_2.AspectType = Enum.AspectType.ScaleWithParentSize
+
+UIAspectRatioConstraint_3.Parent = TitleBar
+UIAspectRatioConstraint_3.AspectRatio = 19.333
+UIAspectRatioConstraint_3.AspectType = Enum.AspectType.ScaleWithParentSize
+
+TabRow.Name = "TabRow"
+TabRow.Parent = MainFrame
+TabRow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TabRow.BackgroundTransparency = 1.000
+TabRow.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TabRow.BorderSizePixel = 0
+TabRow.Position = UDim2.new(0, 0, 0, 30)
+TabRow.Size = UDim2.new(0, 580, 0, 22)
+
+UIListLayout.Parent = TabRow
+UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+
+Tab1.Name = "Tab1"
+Tab1.Parent = TabRow
+Tab1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab1.BackgroundTransparency = 1.000
+Tab1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab1.BorderSizePixel = 0
+Tab1.LayoutOrder = 1
+Tab1.Size = UDim2.new(0, 96, 0, 22)
+Tab1.Font = Enum.Font.Creepster
+Tab1.Text = "AUTO PARRY"
+Tab1.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tab1.TextScaled = true
+Tab1.TextSize = 11.000
+Tab1.TextWrapped = true
+
+UITextSizeConstraint_2.Parent = Tab1
+UITextSizeConstraint_2.MaxTextSize = 11
+
+UIAspectRatioConstraint_4.Parent = Tab1
+UIAspectRatioConstraint_4.AspectRatio = 4.392
+UIAspectRatioConstraint_4.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Tab2.Name = "Tab2"
+Tab2.Parent = TabRow
+Tab2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab2.BackgroundTransparency = 1.000
+Tab2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab2.BorderSizePixel = 0
+Tab2.LayoutOrder = 2
+Tab2.Size = UDim2.new(0, 96, 0, 22)
+Tab2.Font = Enum.Font.Creepster
+Tab2.Text = "SILENT AIM"
+Tab2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tab2.TextScaled = true
+Tab2.TextSize = 11.000
+Tab2.TextWrapped = true
+
+UITextSizeConstraint_3.Parent = Tab2
+UITextSizeConstraint_3.MaxTextSize = 11
+
+UIAspectRatioConstraint_5.Parent = Tab2
+UIAspectRatioConstraint_5.AspectRatio = 4.392
+UIAspectRatioConstraint_5.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Tab3.Name = "Tab3"
+Tab3.Parent = TabRow
+Tab3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab3.BackgroundTransparency = 1.000
+Tab3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab3.BorderSizePixel = 0
+Tab3.LayoutOrder = 3
+Tab3.Size = UDim2.new(0, 96, 0, 22)
+Tab3.Font = Enum.Font.Creepster
+Tab3.Text = "AIMLOCK"
+Tab3.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tab3.TextScaled = true
+Tab3.TextSize = 11.000
+Tab3.TextWrapped = true
+
+UITextSizeConstraint_4.Parent = Tab3
+UITextSizeConstraint_4.MaxTextSize = 11
+
+UIAspectRatioConstraint_6.Parent = Tab3
+UIAspectRatioConstraint_6.AspectRatio = 4.392
+UIAspectRatioConstraint_6.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Tab4.Name = "Tab4"
+Tab4.Parent = TabRow
+Tab4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab4.BackgroundTransparency = 1.000
+Tab4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab4.BorderSizePixel = 0
+Tab4.LayoutOrder = 4
+Tab4.Size = UDim2.new(0, 96, 0, 22)
+Tab4.Font = Enum.Font.Creepster
+Tab4.Text = "MISC"
+Tab4.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tab4.TextScaled = true
+Tab4.TextSize = 11.000
+Tab4.TextWrapped = true
+
+UITextSizeConstraint_5.Parent = Tab4
+UITextSizeConstraint_5.MaxTextSize = 11
+
+UIAspectRatioConstraint_7.Parent = Tab4
+UIAspectRatioConstraint_7.AspectRatio = 4.392
+UIAspectRatioConstraint_7.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Tab5.Name = "Tab5"
+Tab5.Parent = TabRow
+Tab5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab5.BackgroundTransparency = 1.000
+Tab5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab5.BorderSizePixel = 0
+Tab5.LayoutOrder = 5
+Tab5.Size = UDim2.new(0, 96, 0, 22)
+Tab5.Font = Enum.Font.Creepster
+Tab5.Text = "CONFIG"
+Tab5.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tab5.TextScaled = true
+Tab5.TextSize = 11.000
+Tab5.TextWrapped = true
+
+UITextSizeConstraint_6.Parent = Tab5
+UITextSizeConstraint_6.MaxTextSize = 11
+
+UIAspectRatioConstraint_8.Parent = Tab5
+UIAspectRatioConstraint_8.AspectRatio = 4.392
+UIAspectRatioConstraint_8.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Tab6.Name = "Tab6"
+Tab6.Parent = TabRow
+Tab6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab6.BackgroundTransparency = 1.000
+Tab6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab6.BorderSizePixel = 0
+Tab6.LayoutOrder = 6
+Tab6.Size = UDim2.new(0, 96, 0, 22)
+Tab6.Font = Enum.Font.Creepster
+Tab6.Text = "SETTING"
+Tab6.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tab6.TextScaled = true
+Tab6.TextSize = 11.000
+Tab6.TextWrapped = true
+
+UITextSizeConstraint_7.Parent = Tab6
+UITextSizeConstraint_7.MaxTextSize = 11
+
+UIAspectRatioConstraint_9.Parent = Tab6
+UIAspectRatioConstraint_9.AspectRatio = 4.392
+UIAspectRatioConstraint_9.AspectType = Enum.AspectType.ScaleWithParentSize
+
+UIAspectRatioConstraint_10.Parent = TabRow
+UIAspectRatioConstraint_10.AspectRatio = 26.364
+UIAspectRatioConstraint_10.AspectType = Enum.AspectType.ScaleWithParentSize
+
+ContentFrame.Name = "ContentFrame"
+ContentFrame.Parent = MainFrame
+ContentFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ContentFrame.BackgroundTransparency = 1.000
+ContentFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ContentFrame.BorderSizePixel = 0
+ContentFrame.Position = UDim2.new(0, 0, 0, 53)
+ContentFrame.Size = UDim2.new(0, 578, 0, 286)
+
+Page_AutoParry.Name = "Page_AutoParry"
+Page_AutoParry.Parent = ContentFrame
+Page_AutoParry.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Page_AutoParry.BackgroundTransparency = 1.000
+Page_AutoParry.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Page_AutoParry.BorderSizePixel = 0
+Page_AutoParry.Size = UDim2.new(0, 578, 0, 286)
+
+ScrollArea.Name = "ScrollArea"
+ScrollArea.Parent = Page_AutoParry
+ScrollArea.Active = true
+ScrollArea.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollArea.BackgroundTransparency = 1.000
+ScrollArea.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollArea.BorderSizePixel = 0
+ScrollArea.Position = UDim2.new(0, 2, 0, 1)
+ScrollArea.Size = UDim2.new(0, 574, 0, 282)
+ScrollArea.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollArea.ScrollBarThickness = 0
+
+RightPanel.Name = "RightPanel"
+RightPanel.Parent = ScrollArea
+RightPanel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RightPanel.BackgroundTransparency = 1.000
+RightPanel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RightPanel.BorderSizePixel = 0
+RightPanel.Position = UDim2.new(0, 298, 0, 3)
+RightPanel.Size = UDim2.new(0, 271, 0, 274)
+
+UIAspectRatioConstraint_11.Parent = RightPanel
+UIAspectRatioConstraint_11.AspectRatio = 0.991
+UIAspectRatioConstraint_11.AspectType = Enum.AspectType.ScaleWithParentSize
+UIAspectRatioConstraint_11.DominantAxis = Enum.DominantAxis.Height
+
+LeftPanel.Name = "LeftPanel"
+LeftPanel.Parent = ScrollArea
+LeftPanel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LeftPanel.BackgroundTransparency = 1.000
+LeftPanel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LeftPanel.BorderSizePixel = 0
+LeftPanel.Position = UDim2.new(0, 4, 0, 3)
+LeftPanel.Size = UDim2.new(0, 271, 0, 274)
+
+UIAspectRatioConstraint_12.Parent = LeftPanel
+UIAspectRatioConstraint_12.AspectRatio = 0.991
+UIAspectRatioConstraint_12.AspectType = Enum.AspectType.ScaleWithParentSize
+UIAspectRatioConstraint_12.DominantAxis = Enum.DominantAxis.Height
+
+UIAspectRatioConstraint_13.Parent = ScrollArea
+UIAspectRatioConstraint_13.AspectRatio = 2.035
+UIAspectRatioConstraint_13.AspectType = Enum.AspectType.ScaleWithParentSize
+
+UIAspectRatioConstraint_14.Parent = Page_AutoParry
+UIAspectRatioConstraint_14.AspectRatio = 2.021
+UIAspectRatioConstraint_14.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Page_SilentAim.Name = "Page_SilentAim"
+Page_SilentAim.Parent = ContentFrame
+Page_SilentAim.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Page_SilentAim.BackgroundTransparency = 1.000
+Page_SilentAim.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Page_SilentAim.BorderSizePixel = 0
+Page_SilentAim.Size = UDim2.new(0, 578, 0, 286)
+Page_SilentAim.Visible = false
+
+ScrollArea_2.Name = "ScrollArea"
+ScrollArea_2.Parent = Page_SilentAim
+ScrollArea_2.Active = true
+ScrollArea_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollArea_2.BackgroundTransparency = 1.000
+ScrollArea_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollArea_2.BorderSizePixel = 0
+ScrollArea_2.Position = UDim2.new(0, 2, 0, 2)
+ScrollArea_2.Size = UDim2.new(1, -4, 1, -4)
+ScrollArea_2.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollArea_2.ScrollBarThickness = 0
+
+RightPanel_2.Name = "RightPanel"
+RightPanel_2.Parent = ScrollArea_2
+RightPanel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+RightPanel_2.BackgroundTransparency = 1.000
+RightPanel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RightPanel_2.BorderSizePixel = 0
+RightPanel_2.Position = UDim2.new(0.519999981, 0, 0, 4)
+RightPanel_2.Size = UDim2.new(0.479999989, -4, 1, -8)
+
+LeftPanel_2.Name = "LeftPanel"
+LeftPanel_2.Parent = ScrollArea_2
+LeftPanel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LeftPanel_2.BackgroundTransparency = 1.000
+LeftPanel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LeftPanel_2.BorderSizePixel = 0
+LeftPanel_2.Position = UDim2.new(0, 4, 0, 4)
+LeftPanel_2.Size = UDim2.new(0.479999989, -4, 1, -8)
+
+UIAspectRatioConstraint_15.Parent = Page_SilentAim
+UIAspectRatioConstraint_15.AspectRatio = 2.021
+UIAspectRatioConstraint_15.AspectType = Enum.AspectType.ScaleWithParentSize
+
+Page_Aimlock.Name = "Page_Aimlock"
+Page_Aimlock.Parent = ContentFrame
+Page_Aimlock.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Page_Aimlock.BackgroundTransparency = 1.000
+Page_Aimlock.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Page_Aimlock.BorderSizePixel = 0
+Page_Aimlock.Size = UDim2.new(0, 578, 0, 286)
+Page_Aimlock.Visible = false
+
+ScrollArea_3.Name = "ScrollArea"
+ScrollArea_3.Parent = Page_Aimlock
+ScrollArea_3.Active = true
+ScrollArea_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollArea_3.BackgroundTransparency = 1.000
+ScrollArea_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScrollArea_3.BorderSizePixel = 0
+ScrollArea_3.Position = UDim2.new(0, 2, 0, 1)
+ScrollArea_3.Size = UDim2.new(0, 574, 0, 282)
+ScrollArea_3.Visible = false
+ScrollArea_3.CanvasSize = UDim2.new(0, 0, 0, 0)
+ScrollArea_3.ScrollBarThickness = 0
+
+RightPanel_3.Name = "RightPanel"
+RightPanel_3.Parent = ScrollArea_3
+RightP
