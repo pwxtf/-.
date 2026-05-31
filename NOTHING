@@ -144,7 +144,10 @@ local UIAspectRatioConstraint_49 = Instance.new("UIAspectRatioConstraint")
 --Properties:
 
 MainFrame.Name = "MainFrame"
-MainFrame.Parent = game.StarterGui.SynthUI
+local SynthUI = Instance.new("ScreenGui")
+SynthUI.Name = "SynthUI"
+SynthUI.Parent = game.Players.LocalPlayer.PlayerGui
+MainFrame.Parent = SynthUI
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 MainFrame.BackgroundTransparency = 0.450
