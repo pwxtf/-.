@@ -801,7 +801,7 @@ UICorner_15.Parent = MainFrame
 
 -- Scripts:
 
-local function UGRW_fake_script() -- SynthUI.UIScript 
+local function REYWUX_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1057,16 +1057,23 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 	end)
 	
 	-- MOONWALK TOGGLE
-	local LeftPanel_Misc = ContentFrame.Page_Misc.ScrollArea:WaitForChild("LeftPanel")
-	local MoonwalkSwitchBG = LeftPanel_Misc:WaitForChild("Toggle_Moonwalk"):WaitForChild("SwitchBG")
-	local MoonwalkKnob = MoonwalkSwitchBG:WaitForChild("Knob")
-	local MoonwalkScript = LeftPanel_Misc:WaitForChild("Toggle_Moonwalk"):WaitForChild("MoonwalkScript")
 	local moonwalkOn = false
+	local MoonwalkToggle = ContentFrame.Page_Misc.ScrollArea.LeftPanel.Toggle_Moonwalk
+	local MoonwalkSwitchBG = MoonwalkToggle.SwitchBG
+	local MoonwalkKnob = MoonwalkSwitchBG.Knob
+	local MoonwalkScript = MoonwalkToggle:FindFirstChildOfClass("LocalScript")
+	
+	-- DEFAULT OFF
+	if MoonwalkScript then
+		MoonwalkScript.Enabled = false
+	end
 	
 	local function setMoonwalkSwitch(on)
 		moonwalkOn = on
 		if on then
-			MoonwalkScript.Disabled = false
+			if MoonwalkScript then
+				MoonwalkScript.Enabled = true
+			end
 			TweenService:Create(MoonwalkKnob, TweenInfo.new(0.2), {
 				Position = UDim2.new(1, -14, 0.5, 0)
 			}):Play()
@@ -1076,7 +1083,9 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 				}):Play()
 			end
 		else
-			MoonwalkScript.Disabled = true
+			if MoonwalkScript then
+				MoonwalkScript.Enabled = false
+			end
 			TweenService:Create(MoonwalkKnob, TweenInfo.new(0.2), {
 				Position = UDim2.new(0, 2, 0.5, 0)
 			}):Play()
@@ -1095,9 +1104,51 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 		end
 	end)
 	
-	-- CONFIG SYSTEM
+	-- CONFIG SYSTEM PERMANEN (writefile/readfile)
+	local HttpService = game:GetService("HttpService")
+	local configFolder = "SynthConfigs/"
+	local autoloadFile = configFolder .. "autoload.json"
+	
+	local function ensureFolder()
+		if not isfolder(configFolder) then
+			makefolder(configFolder)
+		end
+	end
+	
+	local function saveConfig(name, data)
+		ensureFolder()
+		writefile(configFolder .. name .. ".json", HttpService:JSONEncode(data))
+	end
+	
+	local function loadConfigFile(name)
+		local path = configFolder .. name .. ".json"
+		if isfile(path) then
+			return HttpService:JSONDecode(readfile(path))
+		end
+		return nil
+	end
+	
+	local function deleteConfigFile(name)
+		local path = configFolder .. name .. ".json"
+		if isfile(path) then
+			delfile(path)
+		end
+	end
+	
+	local function getConfigFiles()
+		ensureFolder()
+		local files = listfiles(configFolder)
+		local names = {}
+		for _, f in pairs(files) do
+			local name = f:gsub(configFolder, ""):gsub("%.json", "")
+			if name ~= "autoload" then
+				table.insert(names, name)
+			end
+		end
+		return names
+	end
+	
 	local configList = {}
-	local autoloadConfig = nil
 	local selectedConfig = nil
 	
 	local LeftPanel_Config = ContentFrame.Page_Config.ScrollArea.LeftPanel
@@ -1114,7 +1165,7 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 	local function updateSelectBtn()
 		if selectedConfig then
 			Btn_SelectConfig.Text = selectedConfig
-			Btn_SelectConfig.TextColor3 = Color3.fromRGB(0, 0, 0)
+			Btn_SelectConfig.TextColor3 = Color3.fromRGB(255, 255, 255)
 		else
 			Btn_SelectConfig.Text = ". . ."
 			Btn_SelectConfig.TextColor3 = Color3.fromRGB(100, 100, 100)
@@ -1154,8 +1205,9 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 			end
 		end
 	
+		local names = getConfigFiles()
 		local index = 0
-		for name, _ in pairs(configList) do
+		for _, name in pairs(names) do
 			local btn = Instance.new("TextButton")
 			btn.Parent = ConfigListFrame
 			btn.ZIndex = 99
@@ -1192,10 +1244,13 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 	LeftPanel_Config.Btn_CreateConfig.MouseButton1Click:Connect(function()
 		local name = InputConfigName.Text
 		if name == "" or name == nil then return end
-		configList[name] = getToggles()
+		local data = getToggles()
+		saveConfig(name, data)
+		configList[name] = data
 		selectedConfig = name
 		updateSelectBtn()
 		InputConfigName.Text = ""
+		task.wait(0.1)
 		refreshConfigList()
 	end)
 	
@@ -1207,19 +1262,25 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 	
 	-- LOAD CONFIG
 	LeftPanel_Config.Btn_LoadConfig.MouseButton1Click:Connect(function()
-		if not selectedConfig or not configList[selectedConfig] then return end
-		applyToggles(configList[selectedConfig])
+		if not selectedConfig then return end
+		local data = loadConfigFile(selectedConfig)
+		if data then
+			applyToggles(data)
+		end
 	end)
 	
 	-- OVERWRITE CONFIG
 	LeftPanel_Config.Btn_OverwriteConfig.MouseButton1Click:Connect(function()
 		if not selectedConfig then return end
-		configList[selectedConfig] = getToggles()
+		local data = getToggles()
+		saveConfig(selectedConfig, data)
+		configList[selectedConfig] = data
 	end)
 	
 	-- DELETE CONFIG
 	LeftPanel_Config.Btn_DeleteConfig.MouseButton1Click:Connect(function()
 		if not selectedConfig then return end
+		deleteConfigFile(selectedConfig)
 		configList[selectedConfig] = nil
 		selectedConfig = nil
 		updateSelectBtn()
@@ -1234,21 +1295,37 @@ local function UGRW_fake_script() -- SynthUI.UIScript
 	-- SET AS AUTOLOAD
 	LeftPanel_Config.Btn_SetAutoload.MouseButton1Click:Connect(function()
 		if not selectedConfig then return end
-		autoloadConfig = selectedConfig
+		ensureFolder()
+		writefile(autoloadFile, HttpService:JSONEncode({name = selectedConfig}))
 	end)
 	
 	-- RESET AUTOLOAD
 	LeftPanel_Config.Btn_ResetAutoload.MouseButton1Click:Connect(function()
-		autoloadConfig = nil
+		if isfile(autoloadFile) then
+			delfile(autoloadFile)
+		end
 	end)
 	
 	-- AUTOLOAD ON START
-	if autoloadConfig and configList[autoloadConfig] then
-		applyToggles(configList[autoloadConfig])
-	end
+	task.spawn(function()
+		task.wait(1)
+		ensureFolder()
+		if isfile(autoloadFile) then
+			local data = HttpService:JSONDecode(readfile(autoloadFile))
+			if data and data.name then
+				local configData = loadConfigFile(data.name)
+				if configData then
+					selectedConfig = data.name
+					updateSelectBtn()
+					applyToggles(configData)
+				end
+			end
+		end
+		refreshConfigList()
+	end)
 end
-coroutine.wrap(UGRW_fake_script)()
-local function AZQM_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
+coroutine.wrap(REYWUX_fake_script)()
+local function AAQBM_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
 	local script = Instance.new('LocalScript', Toggle_Moonwalk)
 
 	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
@@ -1624,4 +1701,4 @@ local function AZQM_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 end
-coroutine.wrap(AZQM_fake_script)()
+coroutine.wrap(AAQBM_fake_script)()
