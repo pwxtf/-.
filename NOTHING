@@ -84,7 +84,7 @@ SynthUI.ResetOnSpawn = false
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = SynthUI
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 MainFrame.BackgroundTransparency = 0.450
 MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
@@ -738,15 +738,15 @@ Border.BackgroundTransparency = 1.000
 Border.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Border.BorderSizePixel = 0
 Border.Position = UDim2.new(0, 290, 0, 155)
-Border.Size = UDim2.new(0, 669, 0, 557)
+Border.Size = UDim2.new(0, 685, 0, 494)
 Border.ZIndex = 10
-Border.Image = "rbxassetid://136203567489467"
+Border.Image = "rbxassetid://93429932514130"
 
 UICorner_13.Parent = MainFrame
 
 -- Scripts:
 
-local function IIKFGC_fake_script() -- SynthUI.UIScript 
+local function XNQKRI_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1246,4 +1246,4 @@ local function IIKFGC_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(IIKFGC_fake_script)()
+coroutine.wrap(XNQKRI_fake_script)()
