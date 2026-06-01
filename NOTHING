@@ -801,7 +801,7 @@ UICorner_15.Parent = MainFrame
 
 -- Scripts:
 
-local function TRLZA_fake_script() -- SynthUI.UIScript 
+local function SPIINCV_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1358,8 +1358,8 @@ local function TRLZA_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(TRLZA_fake_script)()
-local function QUPS_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
+coroutine.wrap(SPIINCV_fake_script)()
+local function DHCDZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
 	local script = Instance.new('LocalScript', Toggle_Moonwalk)
 
 	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
@@ -1369,7 +1369,7 @@ local function QUPS_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	end
 	
 	-- TUNGGU SAMPAI DI-ENABLE DULU BARU JALAN
-	repeat task.wait() until script.Enabled
+	script.Changed:Wait()
 	
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
@@ -1648,4 +1648,4 @@ local function QUPS_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 end
-coroutine.wrap(QUPS_fake_script)()
+coroutine.wrap(DHCDZ_fake_script)()
