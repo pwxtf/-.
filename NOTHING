@@ -746,7 +746,7 @@ UICorner_13.Parent = MainFrame
 
 -- Scripts:
 
-local function KCGIXU_fake_script() -- SynthUI.UIScript 
+local function FNQHJ_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1137,6 +1137,7 @@ local function KCGIXU_fake_script() -- SynthUI.UIScript
 			btn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 			btn.BackgroundTransparency = 0.1
 			btn.BorderSizePixel = 0
+			btn.AutoButtonColor = false
 			btn.Text = name
 			btn.TextColor3 = Color3.fromRGB(255, 255, 255)
 			btn.Font = Enum.Font.Creepster
@@ -1245,4 +1246,4 @@ local function KCGIXU_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(KCGIXU_fake_script)()
+coroutine.wrap(FNQHJ_fake_script)()
