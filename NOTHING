@@ -801,22 +801,12 @@ UICorner_15.Parent = MainFrame
 
 -- Scripts:
 
-local function WKLDMB_fake_script() -- SynthUI.UIScript 
+local function UGRW_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
 	local ContentFrame = MainFrame.ContentFrame
 	local TabRow = MainFrame.TabRow
-	
-	-- PASTIIN SEMUA PAGE LOADED
-	for _, p in pairs(ContentFrame:GetChildren()) do
-		if p:IsA("Frame") then
-			p.Visible = true
-			task.wait()
-			p.Visible = false
-		end
-	end
-	ContentFrame.Page_AutoParry.Visible = true
 	
 	-- TOGGLE FUNCTION
 	local function SetupToggle(toggle)
@@ -1067,10 +1057,10 @@ local function WKLDMB_fake_script() -- SynthUI.UIScript
 	end)
 	
 	-- MOONWALK TOGGLE
-	local LeftPanel_Misc = ContentFrame.Page_Misc.ScrollArea.LeftPanel
-	local MoonwalkSwitchBG = LeftPanel_Misc.Toggle_Moonwalk.SwitchBG
-	local MoonwalkKnob = MoonwalkSwitchBG.Knob
-	local MoonwalkScript = LeftPanel_Misc.Toggle_Moonwalk.MoonwalkScript
+	local LeftPanel_Misc = ContentFrame.Page_Misc.ScrollArea:WaitForChild("LeftPanel")
+	local MoonwalkSwitchBG = LeftPanel_Misc:WaitForChild("Toggle_Moonwalk"):WaitForChild("SwitchBG")
+	local MoonwalkKnob = MoonwalkSwitchBG:WaitForChild("Knob")
+	local MoonwalkScript = LeftPanel_Misc:WaitForChild("Toggle_Moonwalk"):WaitForChild("MoonwalkScript")
 	local moonwalkOn = false
 	
 	local function setMoonwalkSwitch(on)
@@ -1257,8 +1247,8 @@ local function WKLDMB_fake_script() -- SynthUI.UIScript
 		applyToggles(configList[autoloadConfig])
 	end
 end
-coroutine.wrap(WKLDMB_fake_script)()
-local function BIGIXL_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
+coroutine.wrap(UGRW_fake_script)()
+local function AZQM_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
 	local script = Instance.new('LocalScript', Toggle_Moonwalk)
 
 	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
@@ -1634,4 +1624,4 @@ local function BIGIXL_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 end
-coroutine.wrap(BIGIXL_fake_script)()
+coroutine.wrap(AZQM_fake_script)()
