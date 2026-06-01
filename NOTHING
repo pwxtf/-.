@@ -32,12 +32,6 @@ local LeftPanel_3 = Instance.new("Frame")
 local Page_Misc = Instance.new("Frame")
 local ScrollArea_4 = Instance.new("ScrollingFrame")
 local LeftPanel_4 = Instance.new("Frame")
-local Toggle_Moonwalk = Instance.new("Frame")
-local Label = Instance.new("TextLabel")
-local SwitchBG = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local Knob = Instance.new("Frame")
-local UICorner_2 = Instance.new("UICorner")
 local RightPanel_4 = Instance.new("Frame")
 local Page_Config = Instance.new("Frame")
 local ScrollArea_5 = Instance.new("ScrollingFrame")
@@ -45,40 +39,40 @@ local RightPanel_5 = Instance.new("Frame")
 local LeftPanel_5 = Instance.new("Frame")
 local LabelConfigSystem = Instance.new("TextLabel")
 local InputConfigName = Instance.new("TextBox")
-local UICorner_3 = Instance.new("UICorner")
+local UICorner = Instance.new("UICorner")
 local Btn_CreateConfig = Instance.new("TextButton")
-local UICorner_4 = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
 local Divider_2 = Instance.new("Frame")
 local LabelConfigList = Instance.new("TextLabel")
 local Btn_SelectConfig = Instance.new("TextButton")
-local UICorner_5 = Instance.new("UICorner")
+local UICorner_3 = Instance.new("UICorner")
 local Btn_LoadConfig = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
+local UICorner_4 = Instance.new("UICorner")
 local Btn_OverwriteConfig = Instance.new("TextButton")
-local UICorner_7 = Instance.new("UICorner")
+local UICorner_5 = Instance.new("UICorner")
 local Btn_DeleteConfig = Instance.new("TextButton")
-local UICorner_8 = Instance.new("UICorner")
+local UICorner_6 = Instance.new("UICorner")
 local Btn_RefreshList = Instance.new("TextButton")
-local UICorner_9 = Instance.new("UICorner")
+local UICorner_7 = Instance.new("UICorner")
 local Btn_SetAutoload = Instance.new("TextButton")
-local UICorner_10 = Instance.new("UICorner")
+local UICorner_8 = Instance.new("UICorner")
 local Btn_ResetAutoload = Instance.new("TextButton")
-local UICorner_11 = Instance.new("UICorner")
+local UICorner_9 = Instance.new("UICorner")
 local ConfigListFrame = Instance.new("ScrollingFrame")
-local UICorner_12 = Instance.new("UICorner")
+local UICorner_10 = Instance.new("UICorner")
 local Page_Setting = Instance.new("Frame")
 local ScrollArea_6 = Instance.new("ScrollingFrame")
 local LeftPanel_6 = Instance.new("Frame")
 local Toggle_Rainbow = Instance.new("Frame")
-local SwitchBG_2 = Instance.new("Frame")
-local UICorner_13 = Instance.new("UICorner")
-local Knob_2 = Instance.new("Frame")
-local UICorner_14 = Instance.new("UICorner")
-local Label_2 = Instance.new("TextLabel")
+local SwitchBG = Instance.new("Frame")
+local UICorner_11 = Instance.new("UICorner")
+local Knob = Instance.new("Frame")
+local UICorner_12 = Instance.new("UICorner")
+local Label = Instance.new("TextLabel")
 local RightPanel_6 = Instance.new("Frame")
 local Divider_3 = Instance.new("Frame")
 local Border = Instance.new("ImageLabel")
-local UICorner_15 = Instance.new("UICorner")
+local UICorner_13 = Instance.new("UICorner")
 
 --Properties:
 
@@ -360,7 +354,6 @@ Page_Misc.BackgroundTransparency = 1.000
 Page_Misc.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Page_Misc.BorderSizePixel = 0
 Page_Misc.Size = UDim2.new(1, 0, 1, 0)
-Page_Misc.Visible = false
 
 ScrollArea_4.Name = "ScrollArea"
 ScrollArea_4.Parent = Page_Misc
@@ -382,54 +375,6 @@ LeftPanel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
 LeftPanel_4.BorderSizePixel = 0
 LeftPanel_4.Position = UDim2.new(0, 4, 0, 4)
 LeftPanel_4.Size = UDim2.new(0.479999989, -4, 1, -8)
-
-Toggle_Moonwalk.Name = "Toggle_Moonwalk"
-Toggle_Moonwalk.Parent = LeftPanel_4
-Toggle_Moonwalk.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Toggle_Moonwalk.BackgroundTransparency = 1.000
-Toggle_Moonwalk.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Toggle_Moonwalk.BorderSizePixel = 0
-Toggle_Moonwalk.Position = UDim2.new(0, 0, 0, 8)
-Toggle_Moonwalk.Size = UDim2.new(1, 0, 0, 18)
-
-Label.Name = "Label"
-Label.Parent = Toggle_Moonwalk
-Label.AnchorPoint = Vector2.new(0, 0.5)
-Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Label.BackgroundTransparency = 1.000
-Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Label.BorderSizePixel = 0
-Label.Position = UDim2.new(0, 44, 0.5, 0)
-Label.Size = UDim2.new(1, -44, 1, 0)
-Label.Font = Enum.Font.Creepster
-Label.Text = "Moonwalk"
-Label.TextColor3 = Color3.fromRGB(0, 0, 0)
-Label.TextSize = 11.000
-Label.TextWrapped = true
-Label.TextXAlignment = Enum.TextXAlignment.Left
-
-SwitchBG.Name = "SwitchBG"
-SwitchBG.Parent = Toggle_Moonwalk
-SwitchBG.AnchorPoint = Vector2.new(0, 0.5)
-SwitchBG.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-SwitchBG.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SwitchBG.BorderSizePixel = 0
-SwitchBG.Position = UDim2.new(0, 0, 0.5, 0)
-SwitchBG.Size = UDim2.new(0, 36, 0, 16)
-
-UICorner.Parent = SwitchBG
-
-Knob.Name = "Knob"
-Knob.Parent = SwitchBG
-Knob.AnchorPoint = Vector2.new(0, 0.5)
-Knob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Knob.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Knob.BorderSizePixel = 0
-Knob.Position = UDim2.new(0, 2, 0.5, 0)
-Knob.Size = UDim2.new(0, 12, 0, 12)
-
-UICorner_2.CornerRadius = UDim.new(1, 0)
-UICorner_2.Parent = Knob
 
 RightPanel_4.Name = "RightPanel"
 RightPanel_4.Parent = ScrollArea_4
@@ -510,8 +455,8 @@ InputConfigName.TextColor3 = Color3.fromRGB(255, 255, 255)
 InputConfigName.TextSize = 11.000
 InputConfigName.TextWrapped = true
 
-UICorner_3.CornerRadius = UDim.new(0, 4)
-UICorner_3.Parent = InputConfigName
+UICorner.CornerRadius = UDim.new(0, 4)
+UICorner.Parent = InputConfigName
 
 Btn_CreateConfig.Name = "Btn_CreateConfig"
 Btn_CreateConfig.Parent = LeftPanel_5
@@ -527,8 +472,8 @@ Btn_CreateConfig.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_CreateConfig.TextSize = 11.000
 Btn_CreateConfig.TextWrapped = true
 
-UICorner_4.CornerRadius = UDim.new(0, 4)
-UICorner_4.Parent = Btn_CreateConfig
+UICorner_2.CornerRadius = UDim.new(0, 4)
+UICorner_2.Parent = Btn_CreateConfig
 
 Divider_2.Name = "Divider"
 Divider_2.Parent = LeftPanel_5
@@ -568,8 +513,8 @@ Btn_SelectConfig.TextColor3 = Color3.fromRGB(100, 100, 100)
 Btn_SelectConfig.TextSize = 11.000
 Btn_SelectConfig.TextWrapped = true
 
-UICorner_5.CornerRadius = UDim.new(0, 4)
-UICorner_5.Parent = Btn_SelectConfig
+UICorner_3.CornerRadius = UDim.new(0, 4)
+UICorner_3.Parent = Btn_SelectConfig
 
 Btn_LoadConfig.Name = "Btn_LoadConfig"
 Btn_LoadConfig.Parent = LeftPanel_5
@@ -585,8 +530,8 @@ Btn_LoadConfig.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_LoadConfig.TextSize = 11.000
 Btn_LoadConfig.TextWrapped = true
 
-UICorner_6.CornerRadius = UDim.new(0, 4)
-UICorner_6.Parent = Btn_LoadConfig
+UICorner_4.CornerRadius = UDim.new(0, 4)
+UICorner_4.Parent = Btn_LoadConfig
 
 Btn_OverwriteConfig.Name = "Btn_OverwriteConfig"
 Btn_OverwriteConfig.Parent = LeftPanel_5
@@ -602,8 +547,8 @@ Btn_OverwriteConfig.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_OverwriteConfig.TextSize = 11.000
 Btn_OverwriteConfig.TextWrapped = true
 
-UICorner_7.CornerRadius = UDim.new(0, 4)
-UICorner_7.Parent = Btn_OverwriteConfig
+UICorner_5.CornerRadius = UDim.new(0, 4)
+UICorner_5.Parent = Btn_OverwriteConfig
 
 Btn_DeleteConfig.Name = "Btn_DeleteConfig"
 Btn_DeleteConfig.Parent = LeftPanel_5
@@ -619,8 +564,8 @@ Btn_DeleteConfig.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_DeleteConfig.TextSize = 11.000
 Btn_DeleteConfig.TextWrapped = true
 
-UICorner_8.CornerRadius = UDim.new(0, 4)
-UICorner_8.Parent = Btn_DeleteConfig
+UICorner_6.CornerRadius = UDim.new(0, 4)
+UICorner_6.Parent = Btn_DeleteConfig
 
 Btn_RefreshList.Name = "Btn_RefreshList"
 Btn_RefreshList.Parent = LeftPanel_5
@@ -636,8 +581,8 @@ Btn_RefreshList.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_RefreshList.TextSize = 11.000
 Btn_RefreshList.TextWrapped = true
 
-UICorner_9.CornerRadius = UDim.new(0, 4)
-UICorner_9.Parent = Btn_RefreshList
+UICorner_7.CornerRadius = UDim.new(0, 4)
+UICorner_7.Parent = Btn_RefreshList
 
 Btn_SetAutoload.Name = "Btn_SetAutoload"
 Btn_SetAutoload.Parent = LeftPanel_5
@@ -653,8 +598,8 @@ Btn_SetAutoload.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_SetAutoload.TextSize = 11.000
 Btn_SetAutoload.TextWrapped = true
 
-UICorner_10.CornerRadius = UDim.new(0, 4)
-UICorner_10.Parent = Btn_SetAutoload
+UICorner_8.CornerRadius = UDim.new(0, 4)
+UICorner_8.Parent = Btn_SetAutoload
 
 Btn_ResetAutoload.Name = "Btn_ResetAutoload"
 Btn_ResetAutoload.Parent = LeftPanel_5
@@ -670,8 +615,8 @@ Btn_ResetAutoload.TextColor3 = Color3.fromRGB(0, 0, 0)
 Btn_ResetAutoload.TextSize = 11.000
 Btn_ResetAutoload.TextWrapped = true
 
-UICorner_11.CornerRadius = UDim.new(0, 4)
-UICorner_11.Parent = Btn_ResetAutoload
+UICorner_9.CornerRadius = UDim.new(0, 4)
+UICorner_9.Parent = Btn_ResetAutoload
 
 ConfigListFrame.Name = "ConfigListFrame"
 ConfigListFrame.Parent = LeftPanel_5
@@ -687,8 +632,8 @@ ConfigListFrame.ZIndex = 99
 ConfigListFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ConfigListFrame.ScrollBarThickness = 0
 
-UICorner_12.CornerRadius = UDim.new(0, 4)
-UICorner_12.Parent = ConfigListFrame
+UICorner_10.CornerRadius = UDim.new(0, 4)
+UICorner_10.Parent = ConfigListFrame
 
 Page_Setting.Name = "Page_Setting"
 Page_Setting.Parent = ContentFrame
@@ -729,44 +674,44 @@ Toggle_Rainbow.BorderSizePixel = 0
 Toggle_Rainbow.Position = UDim2.new(0, 0, 0, 8)
 Toggle_Rainbow.Size = UDim2.new(1, 0, 0, 18)
 
-SwitchBG_2.Name = "SwitchBG"
-SwitchBG_2.Parent = Toggle_Rainbow
-SwitchBG_2.AnchorPoint = Vector2.new(0, 0.5)
-SwitchBG_2.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-SwitchBG_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-SwitchBG_2.BorderSizePixel = 0
-SwitchBG_2.Position = UDim2.new(0, 0, 0.5, 0)
-SwitchBG_2.Size = UDim2.new(0, 36, 0, 16)
+SwitchBG.Name = "SwitchBG"
+SwitchBG.Parent = Toggle_Rainbow
+SwitchBG.AnchorPoint = Vector2.new(0, 0.5)
+SwitchBG.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+SwitchBG.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SwitchBG.BorderSizePixel = 0
+SwitchBG.Position = UDim2.new(0, 0, 0.5, 0)
+SwitchBG.Size = UDim2.new(0, 36, 0, 16)
 
-UICorner_13.Parent = SwitchBG_2
+UICorner_11.Parent = SwitchBG
 
-Knob_2.Name = "Knob"
-Knob_2.Parent = SwitchBG_2
-Knob_2.AnchorPoint = Vector2.new(0, 0.5)
-Knob_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Knob_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Knob_2.BorderSizePixel = 0
-Knob_2.Position = UDim2.new(0, 2, 0.5, 0)
-Knob_2.Size = UDim2.new(0, 12, 0, 12)
+Knob.Name = "Knob"
+Knob.Parent = SwitchBG
+Knob.AnchorPoint = Vector2.new(0, 0.5)
+Knob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Knob.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Knob.BorderSizePixel = 0
+Knob.Position = UDim2.new(0, 2, 0.5, 0)
+Knob.Size = UDim2.new(0, 12, 0, 12)
 
-UICorner_14.CornerRadius = UDim.new(1, 0)
-UICorner_14.Parent = Knob_2
+UICorner_12.CornerRadius = UDim.new(1, 0)
+UICorner_12.Parent = Knob
 
-Label_2.Name = "Label"
-Label_2.Parent = Toggle_Rainbow
-Label_2.AnchorPoint = Vector2.new(0, 0.5)
-Label_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Label_2.BackgroundTransparency = 1.000
-Label_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Label_2.BorderSizePixel = 0
-Label_2.Position = UDim2.new(0, 44, 0.5, 0)
-Label_2.Size = UDim2.new(1, -44, 1, 0)
-Label_2.Font = Enum.Font.Creepster
-Label_2.Text = "Rainbow UI"
-Label_2.TextColor3 = Color3.fromRGB(0, 0, 0)
-Label_2.TextSize = 11.000
-Label_2.TextWrapped = true
-Label_2.TextXAlignment = Enum.TextXAlignment.Left
+Label.Name = "Label"
+Label.Parent = Toggle_Rainbow
+Label.AnchorPoint = Vector2.new(0, 0.5)
+Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Label.BackgroundTransparency = 1.000
+Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Label.BorderSizePixel = 0
+Label.Position = UDim2.new(0, 44, 0.5, 0)
+Label.Size = UDim2.new(1, -44, 1, 0)
+Label.Font = Enum.Font.Creepster
+Label.Text = "Rainbow UI"
+Label.TextColor3 = Color3.fromRGB(0, 0, 0)
+Label.TextSize = 11.000
+Label.TextWrapped = true
+Label.TextXAlignment = Enum.TextXAlignment.Left
 
 RightPanel_6.Name = "RightPanel"
 RightPanel_6.Parent = ScrollArea_6
@@ -797,11 +742,11 @@ Border.Size = UDim2.new(0, 629, 0, 443)
 Border.ZIndex = 10
 Border.Image = "rbxassetid://97591621212459"
 
-UICorner_15.Parent = MainFrame
+UICorner_13.Parent = MainFrame
 
 -- Scripts:
 
-local function CTICIQ_fake_script() -- SynthUI.UIScript 
+local function KCGIXU_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1056,57 +1001,6 @@ local function CTICIQ_fake_script() -- SynthUI.UIScript
 		end
 	end)
 	
-	-- MOONWALK TOGGLE
-	local moonwalkOn = false
-	local MoonwalkToggle = ContentFrame.Page_Misc.ScrollArea.LeftPanel.Toggle_Moonwalk
-	local MoonwalkSwitchBG = MoonwalkToggle.SwitchBG
-	local MoonwalkKnob = MoonwalkSwitchBG.Knob
-	local MoonwalkScript = MoonwalkToggle:FindFirstChildOfClass("LocalScript")
-	
-	-- DEFAULT OFF
-	if MoonwalkScript then
-		MoonwalkScript.Enabled = false
-	end
-	
-	MoonwalkKnob.Position = UDim2.new(0, 2, 0.5, 0)
-	MoonwalkSwitchBG.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-	
-	local function setMoonwalkSwitch(on)
-		moonwalkOn = on
-		if on then
-			if MoonwalkScript then
-				MoonwalkScript.Enabled = true
-			end
-			TweenService:Create(MoonwalkKnob, TweenInfo.new(0.2), {
-				Position = UDim2.new(1, -14, 0.5, 0)
-			}):Play()
-			if not rainbowOn then
-				TweenService:Create(MoonwalkSwitchBG, TweenInfo.new(0.2), {
-					BackgroundColor3 = Color3.fromRGB(180, 0, 255)
-				}):Play()
-			end
-		else
-			if MoonwalkScript then
-				MoonwalkScript.Enabled = false
-			end
-			TweenService:Create(MoonwalkKnob, TweenInfo.new(0.2), {
-				Position = UDim2.new(0, 2, 0.5, 0)
-			}):Play()
-			if not rainbowOn then
-				TweenService:Create(MoonwalkSwitchBG, TweenInfo.new(0.2), {
-					BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-				}):Play()
-			end
-		end
-	end
-	
-	MoonwalkSwitchBG.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or
-			input.UserInputType == Enum.UserInputType.Touch then
-			setMoonwalkSwitch(not moonwalkOn)
-		end
-	end)
-	
 	-- CONFIG SYSTEM PERMANEN (writefile/readfile)
 	local HttpService = game:GetService("HttpService")
 	local configFolder = "SynthConfigs/"
@@ -1179,7 +1073,6 @@ local function CTICIQ_fake_script() -- SynthUI.UIScript
 	local function getToggles()
 		local data = {}
 		data["__rainbow__"] = rainbowOn
-		data["__moonwalk__"] = moonwalkOn
 	
 		for _, v in pairs(MainFrame:GetDescendants()) do
 			if v:IsA("Frame") and v.Name == "SwitchBG" then
@@ -1202,17 +1095,11 @@ local function CTICIQ_fake_script() -- SynthUI.UIScript
 			end
 		end
 	
-		if data["__moonwalk__"] ~= nil then
-			if data["__moonwalk__"] ~= moonwalkOn then
-				setMoonwalkSwitch(data["__moonwalk__"])
-			end
-		end
-	
 		for _, v in pairs(MainFrame:GetDescendants()) do
 			if v:IsA("Frame") and v.Name == "SwitchBG" then
 				local knob = v:FindFirstChild("Knob")
 				local toggleName = v.Parent.Name
-				if toggleName ~= "Toggle_Rainbow" and toggleName ~= "Toggle_Moonwalk" then
+				if toggleName ~= "Toggle_Rainbow" then
 					if knob and data[toggleName] ~= nil then
 						local on = data[toggleName]
 						if on then
@@ -1358,296 +1245,4 @@ local function CTICIQ_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(CTICIQ_fake_script)()
-local function EDQPIZU_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
-	local script = Instance.new('LocalScript', Toggle_Moonwalk)
-
-	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
-	
-	if not game:IsLoaded() then
-		game.Loaded:Wait()
-	end
-	
-	-- TUNGGU SAMPAI DI-ENABLE DULU BARU JALAN
-	if not script.Enabled then
-		script:GetPropertyChangedSignal("Enabled"):Wait()
-	end
-	
-	local Players = game:GetService("Players")
-	local RunService = game:GetService("RunService")
-	local CoreGui = game:GetService("CoreGui")
-	local UserInputService = game:GetService("UserInputService")
-	
-	local LP = Players.LocalPlayer
-	local Enabled = false
-	local DragLocked = false
-	
-	local CurrentLook = nil
-	local Smoothness = 0.20
-	
-	local ZigAngle = 0
-	local ZigMax = 40
-	local ZigSpeed = 850
-	local ZigReturnSpeed = 800
-	local ZigDirection = 1
-	local ZigSwitchDelay = 0.060
-	local ZigTick = 0
-	
-	local RotateReady = false
-	local LastMoveDir = nil
-	local MoveSlowdown = 0.82
-	local MoveBlend = nil
-	local LastZigDir = 0
-	local ZigStrafe = 0.45
-	
-	-- REMOVE OLD GUI
-	pcall(function()
-		CoreGui:FindFirstChild("MoonwalkLogo"):Destroy()
-	end)
-	
-	-- GUI
-	local gui = Instance.new("ScreenGui")
-	gui.Name = "MoonwalkLogo"
-	gui.ResetOnSpawn = false
-	gui.Parent = CoreGui
-	
-	local original = LP.PlayerGui.Emotes.emotebut.emote
-	local main = original:Clone()
-	main.Parent = gui
-	
-	main.Size = UDim2.new(0,68,0,68)
-	main.Position = UDim2.new(0.5,277,0.35,-147)
-	main.Active = true
-	main.Selectable = false
-	
-	for _,v in pairs(main:GetDescendants()) do
-		if v:IsA("ImageLabel") or v:IsA("ImageButton") then
-			v.Image = ""
-		end
-		if v:IsA("TextLabel") or v:IsA("TextButton") then
-			v.Text = ""
-		end
-	end
-	
-	local btn = Instance.new("TextButton")
-	btn.Parent = main
-	btn.BackgroundTransparency = 1
-	btn.Size = UDim2.new(1,0,1,0)
-	btn.Text = ". . ."
-	btn.Font = Enum.Font.Gotham
-	btn.TextScaled = false
-	btn.TextSize = 20
-	btn.TextColor3 = Color3.fromRGB(255,255,255)
-	btn.Active = true
-	btn.Selectable = false
-	btn.AutoButtonColor = false
-	
-	local dragging = false
-	local dragStart
-	local startPos
-	
-	main.InputBegan:Connect(function(input)
-		if DragLocked then return end
-		if input.UserInputType == Enum.UserInputType.MouseButton1
-			or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = main.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-	
-	UserInputService.InputChanged:Connect(function(input)
-		if dragging and (
-			input.UserInputType == Enum.UserInputType.MouseMovement
-				or input.UserInputType == Enum.UserInputType.Touch
-			) then
-			local delta = input.Position - dragStart
-			main.Position = UDim2.new(
-				startPos.X.Scale,
-				startPos.X.Offset + delta.X,
-				startPos.Y.Scale,
-				startPos.Y.Offset + delta.Y
-			)
-		end
-	end)
-	
-	local lockBtn = Instance.new("TextButton")
-	lockBtn.Parent = gui
-	lockBtn.Size = UDim2.new(0,24,0,24)
-	lockBtn.Position = UDim2.new(1,-50,1,-50)
-	lockBtn.BackgroundTransparency = 1
-	lockBtn.Text = "🔓"
-	lockBtn.Font = Enum.Font.Gotham
-	lockBtn.TextScaled = true
-	lockBtn.TextColor3 = Color3.fromRGB(255,255,255)
-	lockBtn.Active = true
-	lockBtn.Selectable = false
-	lockBtn.AutoButtonColor = false
-	
-	local function updateVisual()
-		if Enabled then
-			btn.TextColor3 = Color3.fromRGB(0,0,0)
-		else
-			btn.TextColor3 = Color3.fromRGB(255,255,255)
-		end
-	end
-	
-	btn.MouseButton1Click:Connect(function()
-		Enabled = not Enabled
-		updateVisual()
-	end)
-	
-	main.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1
-			or input.UserInputType == Enum.UserInputType.Touch then
-			if not dragging then
-				Enabled = not Enabled
-				updateVisual()
-			end
-		end
-	end)
-	
-	lockBtn.MouseButton1Click:Connect(function()
-		DragLocked = not DragLocked
-		if DragLocked then
-			lockBtn.Text = "🔒"
-		else
-			lockBtn.Text = "🔓"
-		end
-	end)
-	
-	updateVisual()
-	
-	-- CLEANUP KALAU DI-DISABLE
-	script:GetPropertyChangedSignal("Enabled"):Connect(function()
-		if not script.Enabled then
-			pcall(function()
-				CoreGui:FindFirstChild("MoonwalkLogo"):Destroy()
-			end)
-			local Hum = LP.Character and LP.Character:FindFirstChildOfClass("Humanoid")
-			if Hum then
-				Hum.AutoRotate = true
-			end
-			CurrentLook = nil
-			RotateReady = false
-			LastMoveDir = nil
-			MoveBlend = nil
-			ZigAngle = 0
-			LastZigDir = 0
-		end
-	end)
-	
-	-- MOONWALK LOOP
-	RunService.RenderStepped:Connect(function(dt)
-		local Char = LP.Character
-		if not Char then return end
-	
-		local HRP = Char:FindFirstChild("HumanoidRootPart")
-		local Hum = Char:FindFirstChildOfClass("Humanoid")
-		if not HRP or not Hum then return end
-	
-		if Enabled and Hum.MoveDirection.Magnitude > 0 then
-			Hum.AutoRotate = false
-	
-			local rawMove = Hum.MoveDirection
-	
-			if MoveBlend then
-				rawMove = MoveBlend:Lerp(rawMove, MoveSlowdown)
-			end
-			MoveBlend = rawMove
-	
-			if LastMoveDir then
-				local backwardDot = rawMove:Dot(-HRP.CFrame.LookVector)
-				if backwardDot > 0.75 then
-					rawMove = LastMoveDir:Lerp(rawMove, 0.72)
-				else
-					rawMove = LastMoveDir:Lerp(rawMove, 0.28)
-				end
-			end
-			LastMoveDir = rawMove
-	
-			local moveDir = rawMove.Unit
-			local targetLook = -moveDir
-	
-			if not CurrentLook then
-				CurrentLook = HRP.CFrame.LookVector
-				RotateReady = false
-				ZigAngle = 0
-				LastZigDir = 0
-			end
-	
-			CurrentLook = CurrentLook:Lerp(targetLook, Smoothness)
-			CurrentLook = Vector3.new(CurrentLook.X, 0, CurrentLook.Z)
-	
-			if CurrentLook.Magnitude > 0 then
-				CurrentLook = CurrentLook.Unit
-			end
-	
-			local dot = CurrentLook:Dot(targetLook)
-			if dot >= 0.985 then
-				RotateReady = true
-			end
-	
-			if RotateReady then
-				ZigTick += dt
-				if ZigTick >= ZigSwitchDelay then
-					ZigTick = 0
-					ZigDirection = -ZigDirection
-					LastZigDir = ZigDirection
-				end
-				if LastZigDir == 0 then
-					LastZigDir = ZigDirection
-				end
-				ZigAngle = math.clamp(
-					ZigAngle + (ZigSpeed * dt * ZigDirection),
-					-ZigMax,
-					ZigMax
-				)
-			else
-				LastZigDir = 0
-				if ZigAngle > 0 then
-					ZigAngle = math.max(ZigAngle - (ZigReturnSpeed * dt), 0)
-				elseif ZigAngle < 0 then
-					ZigAngle = math.min(ZigAngle + (ZigReturnSpeed * dt), 0)
-				end
-			end
-	
-			local pos = HRP.Position
-			local baseCF = CFrame.lookAt(pos, pos + CurrentLook)
-			local rightVec = baseCF.RightVector
-			local strafeDir = rightVec * (LastZigDir * ZigStrafe)
-			local strafedPos = pos + strafeDir * dt * (Hum.WalkSpeed or 16)
-	
-			local cam = workspace.CurrentCamera
-			local camCF = cam.CFrame
-	
-			HRP.CFrame =
-				CFrame.new(strafedPos) *
-				CFrame.fromMatrix(
-					Vector3.new(0,0,0),
-					baseCF.RightVector,
-					Vector3.new(0,1,0)
-				) *
-				CFrame.Angles(0, math.rad(ZigAngle), 0)
-	
-			cam.CFrame = camCF
-		else
-			local Hum2 = LP.Character and LP.Character:FindFirstChildOfClass("Humanoid")
-			if Hum2 then
-				Hum2.AutoRotate = true
-			end
-			CurrentLook = nil
-			RotateReady = false
-			LastMoveDir = nil
-			MoveBlend = nil
-			ZigAngle = 0
-			LastZigDir = 0
-		end
-	end)
-end
-coroutine.wrap(EDQPIZU_fake_script)()
+coroutine.wrap(KCGIXU_fake_script)()
