@@ -801,7 +801,7 @@ UICorner_15.Parent = MainFrame
 
 -- Scripts:
 
-local function WFYLEJW_fake_script() -- SynthUI.UIScript 
+local function HYJOD_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1064,9 +1064,18 @@ local function WFYLEJW_fake_script() -- SynthUI.UIScript
 	local MoonwalkScript = MoonwalkToggle:FindFirstChildOfClass("LocalScript")
 	
 	-- DEFAULT OFF
+	-- DEFAULT OFF
 	if MoonwalkScript then
 		MoonwalkScript.Enabled = false
 	end
+	
+	task.defer(function()
+		local CoreGui = game:GetService("CoreGui")
+		local existing = CoreGui:FindFirstChild("MoonwalkLogo")
+		if existing then
+			existing:Destroy()
+		end
+	end)
 	
 	MoonwalkKnob.Position = UDim2.new(0, 2, 0.5, 0)
 	MoonwalkSwitchBG.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -1358,8 +1367,8 @@ local function WFYLEJW_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(WFYLEJW_fake_script)()
-local function SUCMOWS_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
+coroutine.wrap(HYJOD_fake_script)()
+local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
 	local script = Instance.new('LocalScript', Toggle_Moonwalk)
 
 	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
@@ -1735,4 +1744,4 @@ local function SUCMOWS_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 end
-coroutine.wrap(SUCMOWS_fake_script)()
+coroutine.wrap(WOHZ_fake_script)()
