@@ -801,7 +801,7 @@ UICorner_15.Parent = MainFrame
 
 -- Scripts:
 
-local function EQERJAX_fake_script() -- SynthUI.UIScript 
+local function WFYLEJW_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1063,13 +1063,11 @@ local function EQERJAX_fake_script() -- SynthUI.UIScript
 	local MoonwalkKnob = MoonwalkSwitchBG.Knob
 	local MoonwalkScript = MoonwalkToggle:FindFirstChildOfClass("LocalScript")
 	
-	-- DEFAULT OFF — paksa disabled sebelum apapun jalan
+	-- DEFAULT OFF
 	if MoonwalkScript then
-		MoonwalkScript.Disabled = true
 		MoonwalkScript.Enabled = false
 	end
 	
-	-- Paksa posisi knob moonwalk ke off saat awal
 	MoonwalkKnob.Position = UDim2.new(0, 2, 0.5, 0)
 	MoonwalkSwitchBG.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 	
@@ -1180,7 +1178,6 @@ local function EQERJAX_fake_script() -- SynthUI.UIScript
 	-- GET TOGGLES — loop semua SwitchBG, save by parent name
 	local function getToggles()
 		local data = {}
-		-- save state rainbow secara eksplisit
 		data["__rainbow__"] = rainbowOn
 		data["__moonwalk__"] = moonwalkOn
 	
@@ -1188,7 +1185,6 @@ local function EQERJAX_fake_script() -- SynthUI.UIScript
 			if v:IsA("Frame") and v.Name == "SwitchBG" then
 				local knob = v:FindFirstChild("Knob")
 				if knob then
-					-- knob X scale > 0.5 berarti posisi ON
 					local isOn = knob.Position.X.Scale > 0.5
 					local toggleName = v.Parent.Name
 					data[toggleName] = isOn
@@ -1198,28 +1194,24 @@ local function EQERJAX_fake_script() -- SynthUI.UIScript
 		return data
 	end
 	
-	-- APPLY TOGGLES — apply balik ke SwitchBG + trigger logic khusus
+	-- APPLY TOGGLES
 	local function applyToggles(data)
-		-- handle rainbow dulu
 		if data["__rainbow__"] ~= nil then
 			if data["__rainbow__"] ~= rainbowOn then
 				setSwitch(data["__rainbow__"])
 			end
 		end
 	
-		-- handle moonwalk
 		if data["__moonwalk__"] ~= nil then
 			if data["__moonwalk__"] ~= moonwalkOn then
 				setMoonwalkSwitch(data["__moonwalk__"])
 			end
 		end
 	
-		-- apply semua toggle lain
 		for _, v in pairs(MainFrame:GetDescendants()) do
 			if v:IsA("Frame") and v.Name == "SwitchBG" then
 				local knob = v:FindFirstChild("Knob")
 				local toggleName = v.Parent.Name
-				-- skip rainbow & moonwalk, udah dihandle di atas
 				if toggleName ~= "Toggle_Rainbow" and toggleName ~= "Toggle_Moonwalk" then
 					if knob and data[toggleName] ~= nil then
 						local on = data[toggleName]
@@ -1366,8 +1358,8 @@ local function EQERJAX_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(EQERJAX_fake_script)()
-local function HHTB_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
+coroutine.wrap(WFYLEJW_fake_script)()
+local function SUCMOWS_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
 	local script = Instance.new('LocalScript', Toggle_Moonwalk)
 
 	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
@@ -1743,4 +1735,4 @@ local function HHTB_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 end
-coroutine.wrap(HHTB_fake_script)()
+coroutine.wrap(SUCMOWS_fake_script)()
