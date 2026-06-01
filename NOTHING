@@ -801,7 +801,7 @@ UICorner_15.Parent = MainFrame
 
 -- Scripts:
 
-local function HYJOD_fake_script() -- SynthUI.UIScript 
+local function TRLZA_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1064,18 +1064,9 @@ local function HYJOD_fake_script() -- SynthUI.UIScript
 	local MoonwalkScript = MoonwalkToggle:FindFirstChildOfClass("LocalScript")
 	
 	-- DEFAULT OFF
-	-- DEFAULT OFF
 	if MoonwalkScript then
 		MoonwalkScript.Enabled = false
 	end
-	
-	task.defer(function()
-		local CoreGui = game:GetService("CoreGui")
-		local existing = CoreGui:FindFirstChild("MoonwalkLogo")
-		if existing then
-			existing:Destroy()
-		end
-	end)
 	
 	MoonwalkKnob.Position = UDim2.new(0, 2, 0.5, 0)
 	MoonwalkSwitchBG.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
@@ -1184,7 +1175,7 @@ local function HYJOD_fake_script() -- SynthUI.UIScript
 		end
 	end
 	
-	-- GET TOGGLES — loop semua SwitchBG, save by parent name
+	-- GET TOGGLES
 	local function getToggles()
 		local data = {}
 		data["__rainbow__"] = rainbowOn
@@ -1367,8 +1358,8 @@ local function HYJOD_fake_script() -- SynthUI.UIScript
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(HYJOD_fake_script)()
-local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
+coroutine.wrap(TRLZA_fake_script)()
+local function QUPS_fake_script() -- Toggle_Moonwalk.MoonwalkScript 
 	local script = Instance.new('LocalScript', Toggle_Moonwalk)
 
 	--⛧ ⸸ — —〔 𝕻𝕽𝕴𝖁𝕬𝕿𝕰 𝕻𝕽𝕺𝕻𝕰𝕽𝕿𝖄 〕— — ⸸ ⛧
@@ -1376,6 +1367,9 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	if not game:IsLoaded() then
 		game.Loaded:Wait()
 	end
+	
+	-- TUNGGU SAMPAI DI-ENABLE DULU BARU JALAN
+	repeat task.wait() until script.Enabled
 	
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
@@ -1386,12 +1380,8 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	local Enabled = false
 	local DragLocked = false
 	
-	--⛧ ⸸ — —〔 𝕽𝕺𝕿𝕬𝕿𝕴𝕺𝕹 𝕾𝕸𝕺𝕺𝕿𝕳𝕹𝕰𝕾𝕾 〕— — ⸸ ⛧
-	
 	local CurrentLook = nil
 	local Smoothness = 0.20
-	
-	--⛧ ⸸ — —〔 𝕬𝕹𝕲𝕷𝕰 𝕬𝕮𝕮𝖀𝕸𝖀𝕷𝕬𝕿𝕴𝕺𝕹 𝖅𝕴𝕲𝖅𝕬𝕲 〕— — ⸸ ⛧
 	
 	local ZigAngle = 0
 	local ZigMax = 40
@@ -1401,49 +1391,30 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	local ZigSwitchDelay = 0.060
 	local ZigTick = 0
 	
-	--⛧ ⸸ — —〔 𝕾𝕸𝕬𝕽𝕿 𝕽𝕺𝕿𝕬𝕿𝕰 𝕯𝕰𝕿𝕰𝕮𝕿 〕— — ⸸ ⛧
-	
 	local RotateReady = false
-	
-	--⛧ ⸸ — —〔 𝕬𝕹𝕬𝕷𝕺𝕲 𝕱𝕴𝖃 〕— — ⸸ ⛧
-	
 	local LastMoveDir = nil
-	
-	--⛧ ⸸ — —〔 𝖂𝕬𝕷𝕶 𝕱𝕰𝕰𝕷 〕— — ⸸ ⛧
-	
 	local MoveSlowdown = 0.82
 	local MoveBlend = nil
-	
-	--⛧ ⸸ — —〔 𝕬-𝕯 𝕾𝕴𝕸𝖀𝕷𝕬𝕿𝕴𝕺𝕹 〕— — ⸸ ⛧
-	
 	local LastZigDir = 0
 	local ZigStrafe = 0.45
 	
-	--⛧ ⸸ — —〔 𝕽𝕰𝕸𝕺𝖁𝕰 𝕺𝕷𝕯 〕— — ⸸ ⛧
-	
+	-- REMOVE OLD GUI
 	pcall(function()
 		CoreGui:FindFirstChild("MoonwalkLogo"):Destroy()
 	end)
 	
-	--⛧ ⸸ — —〔 𝕲𝖀𝕴 〕— — ⸸ ⛧
-	
+	-- GUI
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "MoonwalkLogo"
 	gui.ResetOnSpawn = false
 	gui.Parent = CoreGui
 	
-	--⛧ ⸸ — —〔 𝕲𝕰𝕿 𝖁𝕯 𝖀𝕴 〕— — ⸸ ⛧
-	
 	local original = LP.PlayerGui.Emotes.emotebut.emote
-	
-	--⛧ ⸸ — —〔 𝕸𝕬𝕴𝕹 𝖁𝕯 𝕭𝖀𝕿𝕿𝕺𝕹 〕— — ⸸ ⛧
-	
 	local main = original:Clone()
 	main.Parent = gui
 	
 	main.Size = UDim2.new(0,68,0,68)
 	main.Position = UDim2.new(0.5,277,0.35,-147)
-	
 	main.Active = true
 	main.Selectable = false
 	
@@ -1451,33 +1422,23 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		if v:IsA("ImageLabel") or v:IsA("ImageButton") then
 			v.Image = ""
 		end
-	
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.Text = ""
 		end
 	end
 	
-	--⛧ ⸸ — —〔 𝕭𝖀𝕿𝕿𝕺𝕹 . . . 〕— — ⸸ ⛧
-	
 	local btn = Instance.new("TextButton")
 	btn.Parent = main
-	
 	btn.BackgroundTransparency = 1
 	btn.Size = UDim2.new(1,0,1,0)
-	
 	btn.Text = ". . ."
 	btn.Font = Enum.Font.Gotham
-	
 	btn.TextScaled = false
 	btn.TextSize = 20
-	
 	btn.TextColor3 = Color3.fromRGB(255,255,255)
-	
 	btn.Active = true
 	btn.Selectable = false
 	btn.AutoButtonColor = false
-	
-	--⛧ ⸸ — —〔 𝕮𝖀𝕾𝕿𝕺𝕸 𝕯𝕽𝕬𝕲 𝕾𝖄𝕾𝕿𝕰𝕸 〕— — ⸸ ⛧
 	
 	local dragging = false
 	local dragStart
@@ -1485,14 +1446,11 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	
 	main.InputBegan:Connect(function(input)
 		if DragLocked then return end
-	
 		if input.UserInputType == Enum.UserInputType.MouseButton1
 			or input.UserInputType == Enum.UserInputType.Touch then
-	
 			dragging = true
 			dragStart = input.Position
 			startPos = main.Position
-	
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
@@ -1506,9 +1464,7 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 			input.UserInputType == Enum.UserInputType.MouseMovement
 				or input.UserInputType == Enum.UserInputType.Touch
 			) then
-	
 			local delta = input.Position - dragStart
-	
 			main.Position = UDim2.new(
 				startPos.X.Scale,
 				startPos.X.Offset + delta.X,
@@ -1518,27 +1474,18 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 	
-	--⛧ ⸸ — —〔 𝕷𝕺𝕮𝕶 𝕭𝖀𝕿𝕿𝕺𝕹 〕— — ⸸ ⛧
-	
 	local lockBtn = Instance.new("TextButton")
 	lockBtn.Parent = gui
-	
 	lockBtn.Size = UDim2.new(0,24,0,24)
 	lockBtn.Position = UDim2.new(1,-50,1,-50)
-	
 	lockBtn.BackgroundTransparency = 1
 	lockBtn.Text = "🔓"
-	
 	lockBtn.Font = Enum.Font.Gotham
 	lockBtn.TextScaled = true
-	
 	lockBtn.TextColor3 = Color3.fromRGB(255,255,255)
-	
 	lockBtn.Active = true
 	lockBtn.Selectable = false
 	lockBtn.AutoButtonColor = false
-	
-	--⛧ ⸸ — —〔 𝖁𝕴𝕾𝖀𝕬𝕷 〕— — ⸸ ⛧
 	
 	local function updateVisual()
 		if Enabled then
@@ -1548,8 +1495,6 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end
 	
-	--⛧ ⸸ — —〔 𝕿𝕺𝕲𝕲𝕷𝕰 〕— — ⸸ ⛧
-	
 	btn.MouseButton1Click:Connect(function()
 		Enabled = not Enabled
 		updateVisual()
@@ -1558,7 +1503,6 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	main.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1
 			or input.UserInputType == Enum.UserInputType.Touch then
-	
 			if not dragging then
 				Enabled = not Enabled
 				updateVisual()
@@ -1566,11 +1510,8 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 	
-	--⛧ ⸸ — —〔 𝕷𝕺𝕮𝕶 𝕾𝖄𝕾𝕿𝕰𝕸 〕— — ⸸ ⛧
-	
 	lockBtn.MouseButton1Click:Connect(function()
 		DragLocked = not DragLocked
-	
 		if DragLocked then
 			lockBtn.Text = "🔒"
 		else
@@ -1580,46 +1521,52 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 	
 	updateVisual()
 	
-	--⛧ ⸸ — —〔 𝕸𝕺𝕺𝕹𝖂𝕬𝕷𝕶 〕— — ⸸ ⛧
+	-- CLEANUP KALAU DI-DISABLE
+	script:GetPropertyChangedSignal("Enabled"):Connect(function()
+		if not script.Enabled then
+			pcall(function()
+				CoreGui:FindFirstChild("MoonwalkLogo"):Destroy()
+			end)
+			local Hum = LP.Character and LP.Character:FindFirstChildOfClass("Humanoid")
+			if Hum then
+				Hum.AutoRotate = true
+			end
+			CurrentLook = nil
+			RotateReady = false
+			LastMoveDir = nil
+			MoveBlend = nil
+			ZigAngle = 0
+			LastZigDir = 0
+		end
+	end)
 	
+	-- MOONWALK LOOP
 	RunService.RenderStepped:Connect(function(dt)
-	
 		local Char = LP.Character
 		if not Char then return end
 	
 		local HRP = Char:FindFirstChild("HumanoidRootPart")
 		local Hum = Char:FindFirstChildOfClass("Humanoid")
-	
 		if not HRP or not Hum then return end
 	
 		if Enabled and Hum.MoveDirection.Magnitude > 0 then
-	
 			Hum.AutoRotate = false
 	
 			local rawMove = Hum.MoveDirection
 	
-			--⛧ ⸸ — —〔 𝕱𝕰𝕰𝕷 𝕷𝕰𝕭𝕴𝕳 𝕭𝕰𝕽𝕬𝕿 〕— — ⸸ ⛧
-	
 			if MoveBlend then
 				rawMove = MoveBlend:Lerp(rawMove, MoveSlowdown)
 			end
-	
 			MoveBlend = rawMove
 	
-			--⛧ ⸸ — —〔 𝕱𝕴𝖃 𝕬𝕹𝕬𝕷𝕺𝕲 𝕸𝕺𝕭𝕴𝕷𝕰 〕— — ⸸ ⛧
-	
 			if LastMoveDir then
-	
-				local backwardDot =
-					rawMove:Dot(-HRP.CFrame.LookVector)
-	
+				local backwardDot = rawMove:Dot(-HRP.CFrame.LookVector)
 				if backwardDot > 0.75 then
 					rawMove = LastMoveDir:Lerp(rawMove, 0.72)
 				else
 					rawMove = LastMoveDir:Lerp(rawMove, 0.28)
 				end
 			end
-	
 			LastMoveDir = rawMove
 	
 			local moveDir = rawMove.Unit
@@ -1632,80 +1579,47 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 				LastZigDir = 0
 			end
 	
-			--⛧ ⸸ — —〔 𝕾𝕸𝕺𝕺𝕿𝕳 𝕽𝕺𝕿𝕬𝕿𝕰 〕— — ⸸ ⛧
-	
 			CurrentLook = CurrentLook:Lerp(targetLook, Smoothness)
-	
-			CurrentLook = Vector3.new(
-				CurrentLook.X,
-				0,
-				CurrentLook.Z
-			)
+			CurrentLook = Vector3.new(CurrentLook.X, 0, CurrentLook.Z)
 	
 			if CurrentLook.Magnitude > 0 then
 				CurrentLook = CurrentLook.Unit
 			end
 	
-			--⛧ ⸸ — —〔 𝕽𝕺𝕿𝕬𝕿𝕰 𝕯𝕰𝕿𝕰𝕮𝕿 〕— — ⸸ ⛧
-	
-			local dot =
-				CurrentLook:Dot(targetLook)
-	
+			local dot = CurrentLook:Dot(targetLook)
 			if dot >= 0.985 then
 				RotateReady = true
 			end
 	
-			--⛧ ⸸ — —〔 𝕬𝕹𝕲𝕷𝕰 𝕬𝕮𝕮𝖀𝕸𝖀𝕷𝕬𝕿𝕴𝕺𝕹 〕— — ⸸ ⛧
-	
 			if RotateReady then
-	
 				ZigTick += dt
-	
 				if ZigTick >= ZigSwitchDelay then
 					ZigTick = 0
 					ZigDirection = -ZigDirection
 					LastZigDir = ZigDirection
 				end
-	
 				if LastZigDir == 0 then
 					LastZigDir = ZigDirection
 				end
-	
 				ZigAngle = math.clamp(
 					ZigAngle + (ZigSpeed * dt * ZigDirection),
 					-ZigMax,
 					ZigMax
 				)
-	
 			else
-	
 				LastZigDir = 0
-	
 				if ZigAngle > 0 then
-					ZigAngle = math.max(
-						ZigAngle - (ZigReturnSpeed * dt),
-						0
-					)
+					ZigAngle = math.max(ZigAngle - (ZigReturnSpeed * dt), 0)
 				elseif ZigAngle < 0 then
-					ZigAngle = math.min(
-						ZigAngle + (ZigReturnSpeed * dt),
-						0
-					)
+					ZigAngle = math.min(ZigAngle + (ZigReturnSpeed * dt), 0)
 				end
 			end
 	
 			local pos = HRP.Position
-	
-			local baseCF = CFrame.lookAt(
-				pos,
-				pos + CurrentLook
-			)
-	
+			local baseCF = CFrame.lookAt(pos, pos + CurrentLook)
 			local rightVec = baseCF.RightVector
 			local strafeDir = rightVec * (LastZigDir * ZigStrafe)
 			local strafedPos = pos + strafeDir * dt * (Hum.WalkSpeed or 16)
-	
-			--⛧ ⸸ — —〔 𝕾𝕴𝕸𝕻𝕬𝕹 𝕶𝕬𝕸𝕰𝕽𝕬 〕— — ⸸ ⛧
 	
 			local cam = workspace.CurrentCamera
 			local camCF = cam.CFrame
@@ -1713,28 +1627,18 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 			HRP.CFrame =
 				CFrame.new(strafedPos) *
 				CFrame.fromMatrix(
-					Vector3.new(0, 0, 0),
+					Vector3.new(0,0,0),
 					baseCF.RightVector,
-					Vector3.new(0, 1, 0)
+					Vector3.new(0,1,0)
 				) *
-				CFrame.Angles(
-					0,
-					math.rad(ZigAngle),
-					0
-				)
-	
-			--⛧ ⸸ — —〔 𝕽𝕰𝕾𝕿𝕺𝕽𝕰 𝕶𝕬𝕸𝕰𝕽𝕬 〕— — ⸸ ⛧
+				CFrame.Angles(0, math.rad(ZigAngle), 0)
 	
 			cam.CFrame = camCF
-	
 		else
-	
-			local Hum = LP.Character and LP.Character:FindFirstChildOfClass("Humanoid")
-	
-			if Hum then
-				Hum.AutoRotate = true
+			local Hum2 = LP.Character and LP.Character:FindFirstChildOfClass("Humanoid")
+			if Hum2 then
+				Hum2.AutoRotate = true
 			end
-	
 			CurrentLook = nil
 			RotateReady = false
 			LastMoveDir = nil
@@ -1744,4 +1648,4 @@ local function WOHZ_fake_script() -- Toggle_Moonwalk.MoonwalkScript
 		end
 	end)
 end
-coroutine.wrap(WOHZ_fake_script)()
+coroutine.wrap(QUPS_fake_script)()
