@@ -73,6 +73,9 @@ local RightPanel_6 = Instance.new("Frame")
 local Divider_3 = Instance.new("Frame")
 local Border = Instance.new("ImageLabel")
 local UICorner_13 = Instance.new("UICorner")
+local NotifFrame = Instance.new("Frame")
+local NotifText = Instance.new("TextLabel")
+local UICorner_14 = Instance.new("UICorner")
 
 --Properties:
 
@@ -744,9 +747,39 @@ Border.Image = "rbxassetid://97591621212459"
 
 UICorner_13.Parent = MainFrame
 
+NotifFrame.Name = "NotifFrame"
+NotifFrame.Parent = MainFrame
+NotifFrame.AnchorPoint = Vector2.new(1, 1)
+NotifFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotifFrame.BackgroundTransparency = 0.450
+NotifFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NotifFrame.BorderSizePixel = 0
+NotifFrame.Position = UDim2.new(1, -8, 1, -8)
+NotifFrame.Size = UDim2.new(0, 160, 0, 32)
+NotifFrame.Visible = false
+NotifFrame.ZIndex = 99
+
+NotifText.Name = "NotifText"
+NotifText.Parent = NotifFrame
+NotifText.AnchorPoint = Vector2.new(0.5, 0.5)
+NotifText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NotifText.BackgroundTransparency = 1.000
+NotifText.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NotifText.BorderSizePixel = 0
+NotifText.Position = UDim2.new(0.5, 0, 0.5, 0)
+NotifText.Size = UDim2.new(1, -12, 1, -8)
+NotifText.ZIndex = 99
+NotifText.Font = Enum.Font.Creepster
+NotifText.Text = "Config saved!"
+NotifText.TextColor3 = Color3.fromRGB(0, 0, 0)
+NotifText.TextSize = 13.000
+
+UICorner_14.CornerRadius = UDim.new(0, 6)
+UICorner_14.Parent = NotifFrame
+
 -- Scripts:
 
-local function FNQHJ_fake_script() -- SynthUI.UIScript 
+local function IYFLV_fake_script() -- SynthUI.UIScript 
 	local script = Instance.new('LocalScript', SynthUI)
 
 	local MainFrame = script.Parent.MainFrame
@@ -1001,7 +1034,24 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		end
 	end)
 	
-	-- CONFIG SYSTEM PERMANEN (writefile/readfile)
+	-- NOTIF SYSTEM
+	local NotifFrame = MainFrame.NotifFrame
+	local NotifText = NotifFrame.NotifText
+	local notifThread = nil
+	
+	local function showNotif(text)
+		if notifThread then
+			task.cancel(notifThread)
+			notifThread = nil
+		end
+		NotifText.Text = text
+		NotifFrame.Visible = true
+		notifThread = task.delay(2, function()
+			NotifFrame.Visible = false
+		end)
+	end
+	
+	-- CONFIG SYSTEM PERMANEN
 	local HttpService = game:GetService("HttpService")
 	local configFolder = "SynthConfigs/"
 	local autoloadFile = configFolder .. "autoload.json"
@@ -1069,7 +1119,6 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		end
 	end
 	
-	-- GET TOGGLES
 	local function getToggles()
 		local data = {}
 		data["__rainbow__"] = rainbowOn
@@ -1087,7 +1136,6 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		return data
 	end
 	
-	-- APPLY TOGGLES
 	local function applyToggles(data)
 		if data["__rainbow__"] ~= nil then
 			if data["__rainbow__"] ~= rainbowOn then
@@ -1174,6 +1222,7 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		InputConfigName.Text = ""
 		task.wait(0.1)
 		refreshConfigList()
+		showNotif("Config saved!")
 	end)
 	
 	-- SELECT CONFIG
@@ -1188,6 +1237,7 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		local data = loadConfigFile(selectedConfig)
 		if data then
 			applyToggles(data)
+			showNotif("Config loaded!")
 		end
 	end)
 	
@@ -1197,6 +1247,7 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		local data = getToggles()
 		saveConfig(selectedConfig, data)
 		configList[selectedConfig] = data
+		showNotif("Config updated!")
 	end)
 	
 	-- DELETE CONFIG
@@ -1207,11 +1258,13 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		selectedConfig = nil
 		updateSelectBtn()
 		refreshConfigList()
+		showNotif("Config deleted!")
 	end)
 	
 	-- REFRESH LIST
 	LeftPanel_Config.Btn_RefreshList.MouseButton1Click:Connect(function()
 		refreshConfigList()
+		showNotif("List refreshed!")
 	end)
 	
 	-- SET AS AUTOLOAD
@@ -1219,6 +1272,7 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		if not selectedConfig then return end
 		ensureFolder()
 		writefile(autoloadFile, HttpService:JSONEncode({name = selectedConfig}))
+		showNotif("Autoload set!")
 	end)
 	
 	-- RESET AUTOLOAD
@@ -1226,6 +1280,7 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 		if isfile(autoloadFile) then
 			delfile(autoloadFile)
 		end
+		showNotif("Autoload reset!")
 	end)
 	
 	-- AUTOLOAD ON START
@@ -1240,10 +1295,11 @@ local function FNQHJ_fake_script() -- SynthUI.UIScript
 					selectedConfig = data.name
 					updateSelectBtn()
 					applyToggles(configData)
+					showNotif("Autoload: " .. data.name)
 				end
 			end
 		end
 		refreshConfigList()
 	end)
 end
-coroutine.wrap(FNQHJ_fake_script)()
+coroutine.wrap(IYFLV_fake_script)()
